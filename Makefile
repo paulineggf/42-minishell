@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+         #
+#    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/01/23 12:39:55 by mcraipea         ###   ########.fr        #
+#    Updated: 2020/01/27 18:27:14 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ CC =		gcc
 
 NAME =		minishell
 
-SRC =		main.c \
+SRC =		main.c				\
 			garbage_collector.c \
-			
+			ft_prompt.c 		\
+			parsing_command.c
 
 OBJ = $(SRC:.c=.o)
 

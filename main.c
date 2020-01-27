@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:46:38 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/23 13:36:24 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/01/27 18:23:20 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,30 @@
 int			main(int argc, char **argv, char **env)
 {
 	t_data		*data;
-	int			end;
-	char		*prompt;
-	
+	char		*str_prompt;
+	char		*line;
+
+	(void)argv;
+	(void)env;
+	if (!(data = ft_calloc(1, sizeof(t_data))))
+		return (0);
 	garbage_init(data);
-	end = 0;
-	while (!end)
+	if (argc == 1)
 	{
-		prompt = prompt();
-			if (prompt != NULL)
-				ft_putstr(str);
-			//ret = read(0, line, 127);
-			//line[ret] = '\0';
-			//define_command(line, env);
-    	    if (ft_strcmp(line, "exit\n") == 0)
-				end = 1;
+		while (1)
+		{
+			if ((str_prompt = ft_prompt(data)))
+				ft_putstr(str_prompt);
+			if (get_next_line(0, &line) == -1)
+				exit_failure("get_next_line", data);
+			add_garbage((void**)&line, data);
+			data->lst_parsing = NULL;
+			data->lst_parsing = parsing_command(line, data);
+			ft_lstclear(&data->garbage_collector, &free);
+			// define_command(line, env);
+			// if (ft_strcmp(line, "exit\n") == 0)
+				// break ;
 		}
+	}
+	return (0);
 }
