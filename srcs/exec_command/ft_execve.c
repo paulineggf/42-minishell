@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/27 18:11:45 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/28 15:00:45 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void 	ft_execve(char *command, char **argument, char **env)
 	static char		**path_tab;
 	int				j;
 	int				k;
-	char 			*buf;
+	char			*buf;
 
 	path_tab = ft_calloc(sizeof(char*) * 12, 1);
 	i = 0;

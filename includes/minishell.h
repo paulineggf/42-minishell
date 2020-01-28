@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/27 18:25:44 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:49:46 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <dirent.h>
 # include <string.h>
 /* pour l'utilisation des dossiers */
-# include "./libft/includes/libft.h"
-# include "./libft/includes/ft_printf.h"
+# include "libft.h"
+# include "ft_printf.h"
 
 # define PIPE 		"|"
 # define SEMICOLON 	";"
