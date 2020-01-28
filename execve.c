@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/27 17:00:57 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/01/28 09:37:12 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void ft_execve(char *command, char **argument, char **env)
 	{
 		k = 0;
 		buf = ft_calloc(128, 1);
-		while (path[i] != ':' && path[i])
+		while (path[i] && path[i] != ':')
 		{
 			buf[k++] = path[i];
 			i++;

@@ -6,7 +6,7 @@
 #    By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/01/23 12:39:55 by mcraipea         ###   ########.fr        #
+#    Updated: 2020/01/28 16:49:44 by mcraipea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME =		minishell
 
 SRC =		main.c \
 			garbage_collector.c \
+			split_shell.c \
 			
 
 OBJ = $(SRC:.c=.o)
