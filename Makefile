@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/01/28 14:55:59 by pganglof         ###   ########.fr        #
+#    Updated: 2020/01/28 18:24:42 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(LIB):
 
 clean:
 	$(RM) $(OBJS0) $(LIB) -include $(DPDCS)
-	cd ./libft/ && make fclean && cd ..
+	# cd ./libft/ && make fclean && cd ..
 
 fclean: clean
 	$(RM) $(NAME)
