@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/29 17:34:45 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:09:51 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@
 
 # define PIPE 		"|"
 # define SEMICOLON 	";"
-# define R_QUOTE	"<"
-# define L_QUOTE	">"
-# define RD_QUOTES	">>"
+# define R_CHEVRON	"<"
+# define L_CHEVRON	">"
+# define LD_CHEVRON	">>"
 
 typedef struct		s_parsing
 {
 	char			**arg;
 	int				pipe;
 	int				semicolon;
-	int				r_quote;
-	int				l_quote;
-	int				rd_quotes;
+	int				r_chevron;
+	int				l_chevron;
+	int				ld_chevron;
 }					t_parsing;
 
 typedef struct		s_data
@@ -50,6 +50,7 @@ typedef struct		s_data
 
 //parsing
 t_list				*parsing_command(char *line, t_data *data);
+char				**split_shell(char *str);
 
 //garbage collector
 void				garbage_init(t_data *data);

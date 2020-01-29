@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:22:50 by pganglof          #+#    #+#             */
-/*   Updated: 2020/01/28 14:56:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:09:56 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int			is_separator(char **str, int i, t_parsing *struct_parsing)
 		struct_parsing->pipe = 1;
 	else if (!ft_strcmp(str[i], SEMICOLON))
 		struct_parsing->semicolon = 1;
-	else if (!ft_strcmp(str[i], R_QUOTE))
-		struct_parsing->r_quote = 1;
-	else if (!ft_strcmp(str[i], L_QUOTE))
-		struct_parsing->l_quote = 1;
-	else if (!ft_strcmp(str[i], RD_QUOTES))
-		struct_parsing->rd_quotes = 1;
+	else if (!ft_strcmp(str[i], R_CHEVRON))
+		struct_parsing->r_chevron = 1;
+	else if (!ft_strcmp(str[i], L_CHEVRON))
+		struct_parsing->l_chevron = 1;
+	else if (!ft_strcmp(str[i], LD_CHEVRON))
+		struct_parsing->ld_chevron = 1;
 	else
 		return (0);
 	return (1);
@@ -96,7 +96,7 @@ t_list				*parsing_command(char *line, t_data *data)
 
 	i = 0;
 	lst = NULL;
-	if (!(data->str_split = ft_split(line, ' ')))
+	if (!(data->str_split = split_shell(line)))
 		exit_failure("ft_split", data);
 	add_garbage((void**)&data->str_split, data);
 	while (data->str_split[i])
@@ -106,10 +106,18 @@ t_list				*parsing_command(char *line, t_data *data)
 			exit_failure("ft_lstnew", data);
 		ft_lstadd_back(&lst, new);
 		add_garbage((void**)&(new), data);
-		// printf("%s\n%s\n%s\n%d\n", ((t_parsing*)(new->content))->arg[0],
-		// ((t_parsing*)(new->content))->arg[1],
-		// ((t_parsing*)(new->content))->arg[2],
-		// ((t_parsing*)(new->content))->pipe);
+		int i;
+		i = 0;
+		while (((t_parsing*)(new->content))->arg[i])
+		{
+			printf("arg[%i] : %s\n", i, ((t_parsing*)(new->content))->arg[i]);
+			i++;
+		}
+		printf("pipe : %d\n", ((t_parsing*)(new->content))->pipe);
+		printf("semicolon : %d\n", ((t_parsing*)(new->content))->semicolon);
+		printf("r_chevron : %d\n", ((t_parsing*)(new->content))->r_chevron);
+		printf("l_chevron : %d\n", ((t_parsing*)(new->content))->l_chevron);
+		printf("ld_chevron : %d\n", ((t_parsing*)(new->content))->ld_chevron);
 	}
 	return (lst);
 }

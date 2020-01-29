@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:46:38 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/28 18:32:23 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:16:57 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			main(int argc, char **argv, char **env)
 	garbage_init(data);
 	if (argc == 1)
 	{
+		
 		while (1)
 		{
 			if ((str_prompt = ft_prompt(data)))
@@ -34,12 +35,11 @@ int			main(int argc, char **argv, char **env)
 			add_garbage((void**)&line, data);
 			data->lst_parsing = NULL;
 			data->lst_parsing = parsing_command(line, data);
+			exec_command(data, env);
 			// define_command(data);
 			ft_lstclear(&data->garbage_collector, &free);
-
-
-			// if (ft_strcmp(line, "exit\n") == 0)
-				// break ;
+			if (ft_strcmp(line, "exit\n") == 0)
+				break ;
 		}
 	}
 	return (0);

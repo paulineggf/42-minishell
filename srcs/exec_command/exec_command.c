@@ -6,22 +6,26 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:33:16 by pganglof          #+#    #+#             */
-/*   Updated: 2020/01/29 17:45:04 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:16:51 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		exec_command(t_data *data)
+int		exec_command(t_data *data, char **env)
 {
 	pid_t	pid;
-	int		status;
+	int		mypipefd[2];
+	int		ret;
 
-	if (!data->lst_parsing->next)
+	ret = pipe(mypipefd);
+	if (ret == -1)
+		exit_failure("pipe", data);
+	pid = fork();
+	if (pid == 0)
 	{
-		if ((pid = fork()) == 0)
-		{
-			if ()
-		}
+		/* Child Process */
+		close(mypipefd[0]);
+		ft_execve(((t_parsing*)(data->lst_parsing->content))->arg[0], ((t_parsing*)(data->lst_parsing->content))->arg, env);
 	}
 }
