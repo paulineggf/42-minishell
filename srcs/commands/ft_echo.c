@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 15:20:48 by pganglof          #+#    #+#             */
-/*   Updated: 2020/01/30 15:03:26 by pganglof         ###   ########.fr       */
+/*   Created: 2020/01/30 10:51:42 by pganglof          #+#    #+#             */
+/*   Updated: 2020/01/30 18:14:01 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(void *content)
+int		ft_echo(t_parsing *parsing)
 {
-	t_list	*new;
-
-	if (!(new = malloc(sizeof(t_list))))
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	ft_putstr(parsing->arg[1]);
+	ft_putchar('\n');
+	return (1);
 }

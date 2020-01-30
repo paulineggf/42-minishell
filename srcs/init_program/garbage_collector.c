@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/27 18:25:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/30 18:15:28 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	exit_failure(char *str, t_data *data)
 	free(data);
 	if (str)
 		ft_putstr_fd(str, 2);
+	main_function(data);
 	// else
 	// 	exit(0);
 		// strerror(str);

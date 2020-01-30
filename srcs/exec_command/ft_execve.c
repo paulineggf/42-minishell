@@ -6,13 +6,13 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/29 18:46:52 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/30 16:48:20 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void 	ft_execve(char *command, char **argument, char **env)
+int 	ft_execve(char *command, char **argument, char **env)
 {
 	int				i;
 	char			*path;
@@ -53,4 +53,5 @@ void 	ft_execve(char *command, char **argument, char **env)
 		if (execve(path_tab[i], argument, env) == -1)
 			i++;
 	}
+	return (0);
 }

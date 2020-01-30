@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:22:50 by pganglof          #+#    #+#             */
-/*   Updated: 2020/01/29 19:09:56 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/30 16:46:11 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char			**add_arg(char **arg, int *j,
 	t_list		*new_list;
 
 	k = 0;
-	if (!(new = ft_calloc(*j + 2, sizeof(char*))))
+	if (!(new = ft_calloc(*j + 1, sizeof(char*))))
 		exit_failure("malloc", data);
 	if (!(new_list = ft_lstnew(new)))
 		exit_failure("ft_lstnew", data);
@@ -57,27 +57,22 @@ static char			**add_arg(char **arg, int *j,
 	return (new);
 }
 
-static t_parsing	fill_arg(int *i, t_data *data)
+static t_parsing	*fill_arg(int *i, t_data *data)
 {
 	int			j;
 	t_list		*new;
-	t_parsing	struct_parsing;
+	t_parsing	*struct_parsing;
 
 	j = 1;
-	ft_bzero(&struct_parsing, sizeof(t_parsing));
-	if (!(struct_parsing.arg = ft_calloc(2, sizeof(char*))))
+	easy_malloc((void**)&struct_parsing, sizeof(t_parsing), data);
+	if (!(struct_parsing->arg = ft_calloc(1, sizeof(char*))))
 		exit_failure("ft_calloc", data);
-	if (!(new = ft_lstnew(struct_parsing.arg)))
+	if (!(new = ft_lstnew(struct_parsing->arg)))
 		exit_failure("ft_lstnew", data);
 	ft_lstadd_front(&(data->garbage_collector), new);
-	if (!(struct_parsing.arg[0] = ft_strdup(data->str_split[*i])))
-		exit_failure("ft_strdup", data);
-	add_garbage((void**)&(struct_parsing.arg[0]), data);
-	free(data->str_split[*i]);
-	(*i)++;
-	while (!is_separator(data->str_split, *i, &struct_parsing))
+	while (!is_separator(data->str_split, *i, struct_parsing))
 	{
-		struct_parsing.arg = add_arg(struct_parsing.arg, &j, *i, data);
+		struct_parsing->arg = add_arg(struct_parsing->arg, &j, *i, data);
 		free(data->str_split[*i]);
 		(*i)++;
 		j++;
@@ -90,34 +85,46 @@ static t_parsing	fill_arg(int *i, t_data *data)
 t_list				*parsing_command(char *line, t_data *data)
 {
 	int			i;
-	t_list		*lst;
 	t_list		*new;
-	t_parsing	struct_parsing;
+	t_list		*begin_list;
+	t_parsing	*struct_parsing;
 
 	i = 0;
-	lst = NULL;
+	begin_list = NULL;
 	if (!(data->str_split = split_shell(line)))
 		exit_failure("ft_split", data);
 	add_garbage((void**)&data->str_split, data);
 	while (data->str_split[i])
 	{
-		struct_parsing = fill_arg(&i, data);
-		if (!(new = ft_lstnew((void*)&struct_parsing)))
+	 	struct_parsing = fill_arg(&i, data);
+		if (!(new = ft_lstnew((void*)struct_parsing)))
 			exit_failure("ft_lstnew", data);
-		ft_lstadd_back(&lst, new);
+		ft_lstadd_back(&begin_list, new);
 		add_garbage((void**)&(new), data);
-		int i;
-		i = 0;
-		while (((t_parsing*)(new->content))->arg[i])
-		{
-			printf("arg[%i] : %s\n", i, ((t_parsing*)(new->content))->arg[i]);
-			i++;
-		}
-		printf("pipe : %d\n", ((t_parsing*)(new->content))->pipe);
-		printf("semicolon : %d\n", ((t_parsing*)(new->content))->semicolon);
-		printf("r_chevron : %d\n", ((t_parsing*)(new->content))->r_chevron);
-		printf("l_chevron : %d\n", ((t_parsing*)(new->content))->l_chevron);
-		printf("ld_chevron : %d\n", ((t_parsing*)(new->content))->ld_chevron);
 	}
-	return (lst);
+	return (begin_list);
 }
+
+
+
+
+
+
+	// int j;
+	// t_list *lst;
+	// lst = begin_list;
+	// while (lst)
+	// {
+	// 	j = 0;
+	// 	while (((t_parsing*)(lst->content))->arg[j])
+	// 	{
+	// 		ft_printf("parsing : arg[%d] : %s\n", j, ((t_parsing*)(lst->content))->arg[j]);
+	// 		j++;
+	// 	}
+	// 	ft_printf("pipe : %d\n", ((t_parsing*)(lst->content))->pipe);
+	// 	ft_printf("semicolon : %d\n", ((t_parsing*)(lst->content))->semicolon);
+	// 	ft_printf("r_chevron : %d\n", ((t_parsing*)(lst->content))->r_chevron);
+	// 	ft_printf("l_chevron : %d\n", ((t_parsing*)(lst->content))->l_chevron);
+	// 	ft_printf("ld_chevron : %d\n", ((t_parsing*)(lst->content))->ld_chevron);
+	// 	lst = lst->next;
+	// }

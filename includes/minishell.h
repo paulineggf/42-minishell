@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/29 19:09:51 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/30 18:30:22 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,48 @@ typedef struct		s_parsing
 
 typedef struct		s_data
 {
+	char			**env;
+	int				inputfd;
+	int				status;
+	int				mypipefd[2];
+	char			*str_prompt;
 	char			**str_split;
 	t_list			*lst_parsing;
 	t_list			*garbage_collector;
 }					t_data;
 
-//parsing
+/* COMMANDS */
+
+// commands
+int					ft_echo(t_parsing *parsing);
+
+
+/* EXEC_COMMAND */
+
+int					exec_command(t_data *data);
+int 				ft_execve(char *command, char **argument, char **env);
+int					is_builtin(t_parsing *parsing);
+
+
+/* INIT_PROGRAM */
+
+// parsing
 t_list				*parsing_command(char *line, t_data *data);
 char				**split_shell(char *str);
 
-//garbage collector
+// garbage collector
 void				garbage_init(t_data *data);
 void				add_garbage(void **content, t_data *data);
 void				easy_malloc(void **content, size_t n, t_data *data);
 void				exit_failure(char *str, t_data *data);
 
-//prompt
+// prompt
 char 				*ft_prompt(t_data *data);
 
-//main
+// main
 int					main(int argc, char **argv, char **env);
+void				main_function(t_data *data);
+
+// int					main(int argc, char **argv);
 
 #endif
