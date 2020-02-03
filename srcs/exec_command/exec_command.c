@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/03 16:28:57 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/03 18:47:40 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void		separator(t_data *data)
 	t_list	*tmp;
 
 	i = 1;
-	close(data->mypipefd[0]);
-	if (((t_parsing*)(data->lst_parsing->content))->l_chevron)
+	tmp = data->lst_parsing;
+	while (((t_parsing*)(tmp->content))->l_chevron)
 	{
-		tmp = data->lst_parsing->next;
+		tmp = tmp->next;
 		data->mypipefd[1] = open(((t_parsing*)(tmp->content))->arg[0],
 		O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
 		if (((t_parsing*)(tmp->content))->arg[1] != NULL)
@@ -70,7 +70,8 @@ int				exec_command(t_data *data)
 	{
 		fork_function((t_parsing*)(data->lst_parsing->content), data);
 		while (data->lst_parsing &&
-		((t_parsing*)(data->lst_parsing->content))->l_chevron)
+		(((t_parsing*)(data->lst_parsing->content))->l_chevron ||
+		((t_parsing*)(data->lst_parsing->content))->pipe))
 			data->lst_parsing = data->lst_parsing->next;
 		data->lst_parsing = data->lst_parsing->next;
 		data->status = exec_command(data);

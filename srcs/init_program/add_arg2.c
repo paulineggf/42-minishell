@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:38:42 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/03 15:48:28 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/03 18:22:05 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ char			**add_arg2(char **tmp1, char **tmp2, t_data *data)
 		exit_failure("ft_lstnew", data);
 	ft_lstadd_front(&(data->garbage_collector), new_list);
 	fill_str(new, tmp1, &j, data);
-	fill_str(new, tmp2++, &j, data);
+	fill_str(new, tmp2 + 1, &j, data);
 	return (new);
 }
