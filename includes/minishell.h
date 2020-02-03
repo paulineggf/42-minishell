@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/30 18:30:22 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/01/31 19:29:19 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct		s_parsing
 	int				semicolon;
 	int				r_chevron;
 	int				l_chevron;
-	int				ld_chevron;
+	int				ld_chevron; 
 }					t_parsing;
 
 typedef struct		s_data
