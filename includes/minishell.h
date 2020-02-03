@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/31 19:29:19 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/03 10:09:36 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 typedef struct		s_parsing
 {
 	char			**arg;
+	char			**files;
 	int				pipe;
 	int				semicolon;
 	int				r_chevron;
