@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/31 19:29:19 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:15:41 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ int					exec_command(t_data *data);
 int 				ft_execve(char *command, char **argument, char **env);
 int					is_builtin(t_parsing *parsing);
 
-
 /* INIT_PROGRAM */
 
 // parsing
 t_list				*parsing_command(char *line, t_data *data);
 char				**split_shell(char *str);
+int					len_tabtab(char **str);
+char				**add_arg2(char **tmp1, char **tmp2, t_data *data);
 
 // garbage collector
 void				garbage_init(t_data *data);

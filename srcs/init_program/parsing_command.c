@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:22:50 by pganglof          #+#    #+#             */
-/*   Updated: 2020/01/31 13:28:46 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/03 14:33:57 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char			**add_arg(char **arg, int *j,
 
 	k = 0;
 	if (!(new = ft_calloc(*j + 1, sizeof(char*))))
-		exit_failure("malloc", data);
+		exit_failure("ft_calloc", data);
 	if (!(new_list = ft_lstnew(new)))
 		exit_failure("ft_lstnew", data);
 	ft_lstadd_front(&(data->garbage_collector), new_list);

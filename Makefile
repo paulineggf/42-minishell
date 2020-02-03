@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/01/30 18:30:19 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/03 15:45:43 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,14 @@ SRCS_INIT_PROGRAM =	main.c					\
 					garbage_collector.c 	\
 					ft_prompt.c 			\
 					parsing_command.c 		\
-					split_shell.c
+					split_shell.c			\
+					len_tabtab.c 			\
+					add_arg2.c
 
 SRCS_EXEC_COMMAND = exec_command.c 			\
 					ft_execve.c 			\
-					is_builtin.c 
+					is_builtin.c 			\
+
 
 SRCS_COMMANDS =		ft_echo.c
 
