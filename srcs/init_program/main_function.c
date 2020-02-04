@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:49:58 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/03 13:56:29 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:04:28 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 void	main_function(t_data *data)
 {
 	char		*line;
+	int			ret;
 
 	while (1)
 	{
 		if ((data->str_prompt = ft_prompt(data)))
 			ft_putstr(data->str_prompt);
-		if (get_next_line(0, &line) == -1)
+		ret = get_next_line(0, &line);
+		if (ret == -1)
 			exit_failure("get_next_line", data);
+		if (ret == 0)
+		{
+			ft_putstr_fd("exit\n", 1);
+			exit(0);
+		}
 		add_garbage((void**)&line, data);
 		data->lst_parsing = NULL;
 		data->lst_parsing = parsing_command(line, data);

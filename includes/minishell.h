@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 14:25:15 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:23:59 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <math.h>
 # include <dirent.h>
 # include <string.h>
+# include <signal.h>
 # include "libft.h"
 # include "ft_printf.h"
 

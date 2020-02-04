@@ -6,13 +6,13 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/03 15:59:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:07:15 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int 	ft_execve(char *command, char **argument, char **env)
+int		ft_execve(char *command, char **argument, char **env)
 {
 	int				i;
 	char			*path;
