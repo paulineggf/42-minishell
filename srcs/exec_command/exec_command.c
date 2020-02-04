@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/03 18:47:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 12:48:02 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 
 int				exec_command(t_data *data)
 {
+	if (data->lst_parsing)
+		printf("%s\n", ((t_parsing*)(data->lst_parsing->content))->arg[0]);
+	else
+		printf("NULL\n");
+	
 	pipe(data->mypipefd);
 	if (data->lst_parsing && data->lst_parsing->next == NULL)
 		fork_function((t_parsing*)(data->lst_parsing->content), data);
