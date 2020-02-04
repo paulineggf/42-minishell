@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/04 19:14:59 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:32:07 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,21 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 
 int				exec_command(t_data *data)
 {
+	int		ret;
+	printf("1\n");
 	pipe(data->mypipefd);
-	if (data->lst_parsing && exec_command_env((t_parsing*)
-	(data->lst_parsing->content), data) == 0 && data->lst_parsing->next == NULL)
-		fork_function((t_parsing*)(data->lst_parsing->content), data);
-	else if (data->lst_parsing && data->lst_parsing->next != NULL)
+	printf("2\n");
+	ret = exec_command_env((t_parsing*)(data->lst_parsing->content), data);
+	if (ret == 0 && data->lst_parsing && data->lst_parsing->next == NULL)
 	{
+			printf("3\n");
+			fork_function((t_parsing*)(data->lst_parsing->content), data);
+	}
+	else if (ret == 0 && data->lst_parsing && data->lst_parsing->next != NULL)
+	{
+		printf("4\n");
 		fork_function((t_parsing*)(data->lst_parsing->content), data);
+		printf("5\n");
 		while (data->lst_parsing &&
 		(((t_parsing*)(data->lst_parsing->content))->l_chevron ||
 		((t_parsing*)(data->lst_parsing->content))->pipe ||
@@ -107,7 +115,9 @@ int				exec_command(t_data *data)
 			data->lst_parsing = data->lst_parsing->next;
 		data->lst_parsing = data->lst_parsing->next;
 		data->status = exec_command(data);
+		printf("6\n");
 	}
+	printf("7\n");
 	close(data->mypipefd[0]);
 	close(data->mypipefd[1]);
 	return (data->status);
