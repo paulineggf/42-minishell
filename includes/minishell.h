@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 18:23:59 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:34:36 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				ft_unset(t_parsing *tmp, t_data *data);
 /* EXEC_COMMAND */
 
 int					exec_command(t_data *data);
-int 			       exec_command_env(t_parsing *tmp, t_data *data);
+int 			    exec_command_env(t_parsing *tmp, t_data *data);
 int 				ft_execve(char *command, char **argument, char **env);
 int					is_builtin(t_parsing *parsing);
 
