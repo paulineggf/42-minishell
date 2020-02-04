@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 12:59:52 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:25:15 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct		s_data
 
 // commands
 int					ft_echo(t_parsing *parsing);
-void			ft_export(t_parsing *tmp, t_data *data);
-
+void				ft_export(t_parsing *tmp, t_data *data);
+void				ft_unset(t_parsing *tmp, t_data *data);
 
 /* EXEC_COMMAND */
 

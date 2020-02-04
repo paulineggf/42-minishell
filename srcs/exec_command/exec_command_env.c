@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command_env.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:11 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/03 19:09:43 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:25:27 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int        exec_command_env(t_parsing *tmp, t_data *data)
         ft_export(tmp, data);
         return (1);
     }
-    // else if (ft_strcmp(tmp->arg[0], "unset") == 0)
-    // {
-    //     ft_unset(tmp, data);
-    //     return (1);
-    // }
+    else if (ft_strcmp(tmp->arg[0], "unset") == 0)
+    {
+        ft_unset(tmp, data);
+        return (1);
+    }
     return (0);
 }
 
