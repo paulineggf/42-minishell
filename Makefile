@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/03 15:45:43 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/04 13:00:47 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,17 @@ SRCS_INIT_PROGRAM =	main.c					\
 					parsing_command.c 		\
 					split_shell.c			\
 					len_tabtab.c 			\
-					add_arg2.c
+					add_arg2.c 				\
+					ft_init_env.c
 
 SRCS_EXEC_COMMAND = exec_command.c 			\
 					ft_execve.c 			\
 					is_builtin.c 			\
+					exec_command_env.c
 
 
-SRCS_COMMANDS =		ft_echo.c
+SRCS_COMMANDS =		ft_echo.c				\
+					ft_export.c
 
 SRCS0 = $(addprefix $(PATH_INIT_PROGRAM), $(SRCS_INIT_PROGRAM))
 SRCS1 = $(addprefix $(PATH_EXEC_COMMAND), $(SRCS_EXEC_COMMAND))
