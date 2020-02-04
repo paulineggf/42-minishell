@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/04 14:31:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:40:25 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,12 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 
 int				exec_command(t_data *data)
 {
-	// if (data->lst_parsing)
-	// 	printf("%s\n", ((t_parsing*)(data->lst_parsing->content))->arg[0]);
-	// else
-	// 	printf("NULL\n");
 	printf("HERE\n");
-	pipe(data->mypipefd);
+	if (data->lst_parsing == NULL)
+		printf("NULL\n");
 	if (data->lst_parsing && exec_command_env((t_parsing*)(data->lst_parsing->content), data) == 0)
 	{
+		pipe(data->mypipefd);
 		if (data->lst_parsing && data->lst_parsing->next == NULL)
 			fork_function((t_parsing*)(data->lst_parsing->content), data);
 		else if (data->lst_parsing)

@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:11 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 14:25:27 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:42:03 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int        exec_command_env(t_parsing *tmp, t_data *data)
 {
+    if (tmp == NULL)
+        return (-1);
     if (ft_strcmp(tmp->arg[0], "export") == 0)
     {
         ft_export(tmp, data);
