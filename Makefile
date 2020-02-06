@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
+#    By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/06 16:27:31 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/06 17:33:15 by mcraipea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS_INIT_PROGRAM =	main.c					\
 					split_shell.c			\
 					len_tabtab.c 			\
 					add_arg2.c 				\
-					ft_init_env.c
+					ft_init_env.c			\
+					signal.c
 
 SRCS_EXEC_COMMAND = exec_command.c 			\
 					ft_execve.c 			\

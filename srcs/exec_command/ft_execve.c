@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 17:07:15 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:49:32 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_execve(char *command, char **argument, char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strncmp(env[i],"PATH=", 5) == 0)
+		if (ft_strncmp(env[i], "PATH=", 5) == 0)
 			path = ft_strdup(env[i]);
 		i++;
 	}

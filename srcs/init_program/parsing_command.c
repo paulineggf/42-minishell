@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:22:50 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/03 18:30:54 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:52:02 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_list				*parsing_command(char *line, t_data *data)
 	add_garbage((void**)&data->str_split, data);
 	while (data->str_split[i])
 	{
-	 	struct_parsing = fill_arg(&i, data);
+		struct_parsing = fill_arg(&i, data);
 		if (!(new = ft_lstnew((void*)struct_parsing)))
 			exit_failure("ft_lstnew", data);
 		ft_lstadd_back(&begin_list, new);
@@ -104,27 +104,3 @@ t_list				*parsing_command(char *line, t_data *data)
 	}
 	return (begin_list);
 }
-
-
-
-
-
-
-	// int j;
-	// t_list *lst;
-	// lst = begin_list;
-	// while (lst)
-	// {
-	// 	j = 0;
-	// 	while (((t_parsing*)(lst->content))->arg[j])
-	// 	{
-	// 		ft_printf("parsing : arg[%d] : %s\n", j, ((t_parsing*)(lst->content))->arg[j]);
-	// 		j++;
-	// 	}
-	// 	ft_printf("pipe : %d\n", ((t_parsing*)(lst->content))->pipe);
-	// 	ft_printf("semicolon : %d\n", ((t_parsing*)(lst->content))->semicolon);
-	// 	ft_printf("r_chevron : %d\n", ((t_parsing*)(lst->content))->r_chevron);
-	// 	ft_printf("l_chevron : %d\n", ((t_parsing*)(lst->content))->l_chevron);
-	// 	ft_printf("ld_chevron : %d\n", ((t_parsing*)(lst->content))->ld_chevron);
-	// 	lst = lst->next;
-	// }
