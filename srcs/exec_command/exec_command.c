@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/04 19:32:07 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:31:56 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,32 @@
 
 static void		separator(t_data *data)
 {
-	int		i;
 	t_list	*tmp;
 
-	i = 1;
 	tmp = data->lst_parsing;
-	if (((t_parsing*)(tmp->content))->l_chevron)
+	while (1)
 	{
-		while (((t_parsing*)(tmp->content))->l_chevron)
+		if (((t_parsing*)(tmp->content))->l_chevron)
+			left_chevron(&tmp, data);
+		else if (((t_parsing*)(tmp->content))->r_chevron)
+			right_chevron(&tmp, data);
+		else if (((t_parsing*)(tmp->content))->ld_chevron)
+			double_left_chevron(&tmp, data);
+		else if (((t_parsing*)(tmp->content))->pipe)
 		{
-			tmp = tmp->next;
-			data->mypipefd[1] = open(((t_parsing*)(tmp->content))->arg[0],
-			O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
-			if (((t_parsing*)(tmp->content))->arg[1] != NULL)
-				((t_parsing*)(data->lst_parsing->content))->arg =
-				add_arg2(((t_parsing*)(data->lst_parsing->content))->arg,
-				((t_parsing*)(tmp->content))->arg, data);
+			dup2(data->mypipefd[1], STDOUT_FILENO);
+			break ;
 		}
-		dup2(data->mypipefd[1], STDOUT_FILENO);
+		else
+			break ;
 	}
-	else if (((t_parsing*)(tmp->content))->r_chevron)
-	{
-		while (((t_parsing*)(tmp->content))->r_chevron)
-			tmp = tmp->next;
-		i = 0;
-		while (((t_parsing*)(tmp->content))->arg[i + 1] != NULL)
-			i++;
-		data->mypipefd[1] = open(((t_parsing*)(tmp->content))->arg[i], O_RDONLY);
-		dup2(data->mypipefd[1], STDIN_FILENO);
-	}
-	else if (((t_parsing*)(tmp->content))->ld_chevron)
-	{
-		while (((t_parsing*)(tmp->content))->ld_chevron)
-		{
-			tmp = tmp->next;
-			data->mypipefd[1] = open(((t_parsing*)(tmp->content))->arg[0],
-			O_WRONLY | O_APPEND);
-			if (((t_parsing*)(tmp->content))->arg[1] != NULL)
-				((t_parsing*)(data->lst_parsing->content))->arg =
-				add_arg2(((t_parsing*)(data->lst_parsing->content))->arg,
-				((t_parsing*)(tmp->content))->arg, data);
-		}
-		dup2(data->mypipefd[1], STDOUT_FILENO);
-	}
-	else
-		dup2(data->mypipefd[1], STDOUT_FILENO);
 	close(data->mypipefd[1]);
 }
 
 static void		fork_function(t_parsing *tmp, t_data *data)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == 0)
+	data->pid = fork();
+	if (data->pid == 0)
 	{
 		if (tmp->l_chevron || tmp->pipe || tmp->r_chevron || tmp->ld_chevron)
 			separator(data);
@@ -75,49 +47,57 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 			if (ft_execve(tmp->arg[0], tmp->arg, data->env) == 0)
 				ft_printf("pop & max: command not found: %s\n", tmp->arg[0]);
 	}
-	else if (pid < 0)
+	else if (data->pid < 0)
 		exit_failure("fork", data);
 	else
-	{
-		waitpid(pid, &data->status, 0);
-		if (tmp->pipe)
-		{
-			data->lst_parsing = data->lst_parsing->next;
-			data->status = exec_command(data);
-		}
-	}
+		waitpid(data->pid, &data->status, 0);
 	close(data->mypipefd[0]);
 	close(data->mypipefd[1]);
+}
+
+static void		check_separator(t_data *data)
+{
+	while (1)
+	{
+		if (data->lst_parsing
+		&& (((t_parsing*)(data->lst_parsing->content))->l_chevron))
+			while (((t_parsing*)(data->lst_parsing->content))->l_chevron)
+				data->lst_parsing = data->lst_parsing->next;
+		else if (data->lst_parsing
+		&& (((t_parsing*)(data->lst_parsing->content))->r_chevron))
+			while (((t_parsing*)(data->lst_parsing->content))->r_chevron)
+				data->lst_parsing = data->lst_parsing->next;
+		else if (data->lst_parsing
+		&& (((t_parsing*)(data->lst_parsing->content))->ld_chevron))
+			while (((t_parsing*)(data->lst_parsing->content))->ld_chevron)
+				data->lst_parsing = data->lst_parsing->next;
+		else
+			break ;
+	}
 }
 
 int				exec_command(t_data *data)
 {
 	int		ret;
-	printf("1\n");
+
 	pipe(data->mypipefd);
-	printf("2\n");
-	ret = exec_command_env((t_parsing*)(data->lst_parsing->content), data);
+	ret = 0;
+	if (data->lst_parsing)
+		ret = exec_command_env((t_parsing*)(data->lst_parsing->content), data);
 	if (ret == 0 && data->lst_parsing && data->lst_parsing->next == NULL)
-	{
-			printf("3\n");
-			fork_function((t_parsing*)(data->lst_parsing->content), data);
-	}
+		fork_function((t_parsing*)(data->lst_parsing->content), data);
 	else if (ret == 0 && data->lst_parsing && data->lst_parsing->next != NULL)
 	{
-		printf("4\n");
 		fork_function((t_parsing*)(data->lst_parsing->content), data);
-		printf("5\n");
-		while (data->lst_parsing &&
-		(((t_parsing*)(data->lst_parsing->content))->l_chevron ||
-		((t_parsing*)(data->lst_parsing->content))->pipe ||
-		((t_parsing*)(data->lst_parsing->content))->r_chevron ||
-		((t_parsing*)(data->lst_parsing->content))->ld_chevron))
-			data->lst_parsing = data->lst_parsing->next;
+		check_separator(data);
 		data->lst_parsing = data->lst_parsing->next;
 		data->status = exec_command(data);
-		printf("6\n");
 	}
-	printf("7\n");
+	else if (ret == 1)
+	{
+		data->lst_parsing = data->lst_parsing->next;
+		data->status = exec_command(data);
+	}
 	close(data->mypipefd[0]);
 	close(data->mypipefd[1]);
 	return (data->status);

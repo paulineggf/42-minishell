@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 19:34:36 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:27:52 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_data
 	char			**env;
 	int				inputfd;
 	int				status;
+	pid_t			pid;
 	int				mypipefd[2];
 	char			*str_prompt;
 	char			**str_split;
@@ -67,6 +68,10 @@ int					exec_command(t_data *data);
 int 			    exec_command_env(t_parsing *tmp, t_data *data);
 int 				ft_execve(char *command, char **argument, char **env);
 int					is_builtin(t_parsing *parsing);
+void				left_chevron(t_list **tmp, t_data *data);
+void				right_chevron(t_list **tmp, t_data *data);
+void				double_left_chevron(t_list **tmp, t_data *data);
+
 
 /* INIT_PROGRAM */
 

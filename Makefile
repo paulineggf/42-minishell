@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/04 14:54:11 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/06 16:27:31 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,10 @@ SRCS_INIT_PROGRAM =	main.c					\
 SRCS_EXEC_COMMAND = exec_command.c 			\
 					ft_execve.c 			\
 					is_builtin.c 			\
-					exec_command_env.c
-
+					exec_command_env.c 		\
+					left_chevron.c 			\
+					right_chevron.c 		\
+					double_left_chevron.c 
 
 SRCS_COMMANDS =		ft_echo.c				\
 					ft_export.c 			\
