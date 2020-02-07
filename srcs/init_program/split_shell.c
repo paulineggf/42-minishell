@@ -3,133 +3,115 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/01/29 19:05:20 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:17:19 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void			ft_error(int flag_double, int flag_simple)
+void		ft_error(int flag_double, int flag_simple, t_data *data)
 {
 	if (flag_double == 1)
-		ft_putstr("Il manque un double chevron.\n");
+		exit_failure("Minishell: Il manque un double chevron.\n", data);
 	else if (flag_simple == 1)
-		ft_putstr("Il manque un simple chevron.\n");
+		exit_failure("Minishell: Il manque un simple chevron.\n", data);
 }
 
-static void		ft_new_line(char *buf, char **tab)
+void		ft_other_case(int *i, char *str, char **tab)
+{
+	char		buf[256];
+
+	ft_bzero(buf, 256);
+	buf[0] = str[*i];
+	ft_new_line(buf, tab);
+	*i += 1;
+}
+
+char		*ft_del_quote2(char *str)
 {
 	int			i;
 	int			j;
-	int			size_line;
+	int			size;
+	char		*dest;
 
 	i = 0;
 	j = 0;
-	size_line = ft_strlen(buf);
-	while (tab[i])
-		i++;
-	tab[i] = malloc(sizeof(char) * size_line + 1);
-	while (buf[j])
+	size = ft_strlen(str);
+	dest = calloc(sizeof(char), size + 1);
+	while (str[i])
 	{
-		tab[i][j] = buf[j];
-		j++;
+		if (str[i] == '\'')
+		{
+			if (i < size)
+			{
+				if (str[i + 1] == '\'')
+					i += 2;
+				else
+					dest[j++] = str[i++];
+			}
+		}
+		else
+			dest[j++] = str[i++];
 	}
-	tab[i][j] = '\0';
+	return (dest);
 }
 
-char		**split_shell(char *str)
+char		*ft_del_quote(char *str)
 {
 	int			i;
 	int			j;
-	int			flag_simple;
-	int			flag_double;
-	char		buf[256];
+	int			size;
+	char		*dest;
+
+	i = 0;
+	j = 0;
+	size = ft_strlen(str);
+	dest = calloc(sizeof(char), size + 1);
+	while (str[i])
+	{
+		if (str[i] == '"')
+		{
+			if (i < size)
+			{
+				if (str[i + 1] == '"')
+					i += 2;
+				else
+					dest[j++] = str[i++];
+			}
+		}
+		else
+			dest[j++] = str[i++];
+	}
+	return (dest);
+}
+
+char		**split_shell(char *str, t_data *data)
+{
+	int			i;
 	char		**tab;
 
 	i = 0;
-	j = 0;
-	flag_simple = 0;
-	flag_double = 0;
 	tab = ft_calloc(sizeof(char*) * 128, 1);
-	ft_bzero(buf, 256);
+	str = ft_del_quote(str);
+	str = ft_del_quote2(str);
 	while (str[i])
 	{
 		while (str[i] && str[i] == ' ')
 			i++;
-		if (str[i] == '"' || str[i] == '\'')
-		{
-			if (str[i++] == '"')
-			{
-				flag_double = 1;
-				ft_bzero(buf, 256);
-				j = 0;
-				while (str[i] && str[i] != '"')
-					buf[j++] = str[i++];                   //si un " est trouve
-				if (str[i++] == '"')
-				{
-					flag_double = 0;
-					ft_new_line(buf, tab);
-				}
-				else												//les erreurs ne sont pas bonnes
-				{
-					ft_error(flag_double, flag_simple);
-					return (NULL);
-				}
-
-			}
-			else
-			{
-				flag_simple = 1;
-				ft_bzero(buf, 256);
-				j = 0;
-				while (str[i] && str[i] != '\'')
-					buf[j++] = str[i++];					//si un ' est trouve
-				if (str[i++] == '\'')
-				{
-					flag_simple = 0;
-					ft_new_line(buf, tab);
-				}
-				else
-				{
-					ft_error(flag_double, flag_simple);
-					return (NULL);
-				}
-			}
-		}
+		if (str[i] == '"')
+			ft_double_quote(&i, str, tab, data);
+		else if (str[i] == '\'')
+			ft_simple_quote(&i, str, tab, data);
 		else
 		{
-			ft_bzero(buf, 256);
-			j = 0;
-			while (str[i] && (str[i] != ' ' && str[i] != '>' && str[i] != '<' && str[i] != '|' && str[i] != ';'))
-				buf[j++] = str[i++];
-			ft_new_line(buf, tab);
-			while (str[i] && str[i] == ' ')
-				i++;
+			ft_line_basic(&i, str, tab);
 			if (str[i] == '>')
-			{
-				if (str[i + 1] == '>')             //Partie sans les "" ou ''
-				{
-					ft_new_line(">>", tab);
-					i += 2;
-				}
-				else
-				{
-					ft_bzero(buf, 256);
-					buf[0] = str[i];
-					ft_new_line(buf, tab);
-					i++;
-				}
-			}
+				ft_chevron(&i, str, tab);
 			else if (str[i] == '<' || str[i] == ';' || str[i] == '|')
-			{
-				ft_bzero(buf, 256);
-				buf[0] = str[i];
-				ft_new_line(buf, tab);
-				i++;
-			}
+				ft_other_case(&i, str, tab);
 		}
 	}
 	return (tab);

@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/06 17:50:47 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:31:44 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void		easy_malloc(void **content, size_t n, t_data *data)
 void		exit_failure(char *str, t_data *data)
 {
 	ft_lstclear(&(data->garbage_collector), &free);
-	free(data);
 	if (str)
 		ft_putstr_fd(str, 2);
 	main_function(data);
