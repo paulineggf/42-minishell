@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/06 17:50:47 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:13:45 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void		easy_malloc(void **content, size_t n, t_data *data)
 void		exit_failure(char *str, t_data *data)
 {
 	ft_lstclear(&(data->garbage_collector), &free);
-	free(data);
 	if (str)
 		ft_putstr_fd(str, 2);
 	main_function(data);
@@ -61,6 +60,6 @@ void		exit_failure2(t_data *data)
 		i++;
 	}
 	free(data);
-	ft_putstr_fd("exit\n", 1);
+	ft_putstr_fd("exit\n", 2);
 	exit(0);
 }

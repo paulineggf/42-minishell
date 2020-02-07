@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:38:48 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/06 17:50:27 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/07 12:13:27 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_builtin(t_parsing *parsing)
+int		is_builtin(t_parsing *parsing, t_data *data)
 {
 	(void)parsing;
-	// if (!ft_strcmp(parsing->arg[0], "echo"))
-	// 	return (ft_echo(parsing));
-	// else
+	if (!ft_strcmp(parsing->arg[0], "echo"))
+		return (ft_echo(parsing, data));
+	else
 		return (0);
 	// else if (!ft_strcmp(parsing->arg[0], "cd"))
 	// 	return (ft_cd(parsing));

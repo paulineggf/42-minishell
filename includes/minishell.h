@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/06 17:42:56 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:14:42 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct		s_data
 	char			**env;
 	int				inputfd;
 	int				status;
+	int				savestdout;
+	int				savestdin;
 	pid_t			pid;
 	int				mypipefd[2];
 	char			*str_prompt;
@@ -58,7 +60,7 @@ typedef struct		s_data
 /* COMMANDS */
 
 // commands
-int					ft_echo(t_parsing *parsing);
+int					ft_echo(t_parsing *parsing, t_data *data);
 void				ft_export(t_parsing *tmp, t_data *data);
 void				ft_unset(t_parsing *tmp, t_data *data);
 
@@ -67,7 +69,7 @@ void				ft_unset(t_parsing *tmp, t_data *data);
 int					exec_command(t_data *data);
 int 			    exec_command_env(t_parsing *tmp, t_data *data);
 int 				ft_execve(char *command, char **argument, char **env);
-int					is_builtin(t_parsing *parsing);
+int					is_builtin(t_parsing *parsing, t_data *data);
 void				left_chevron(t_list **tmp, t_data *data);
 void				right_chevron(t_list **tmp, t_data *data);
 void				double_left_chevron(t_list **tmp, t_data *data);
