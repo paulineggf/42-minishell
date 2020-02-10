@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/07 17:23:03 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:26:24 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int				exec_command(t_data *data)
 		fork_function((t_parsing*)(data->lst_parsing->content), data);
 		check_separator(data);
 		dup2(data->savestdout, STDOUT_FILENO);
-		dup2(data->savestdin, STDIN_FILENO);		
+		dup2(data->savestdin, STDIN_FILENO);	
 		data->lst_parsing = data->lst_parsing->next;
 		data->status = exec_command(data);
 	}
