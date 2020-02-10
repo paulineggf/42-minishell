@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 10:49:09 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 11:01:40 by pganglof         ###   ########.fr       */
+/*   Created: 2020/02/10 12:19:57 by pganglof          #+#    #+#             */
+/*   Updated: 2020/02/10 13:01:25 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		ft_cd(t_data * data)
+int			ft_pwd(t_data *data)
 {
-	DIR		*p_dir;
-	char	*line;
-	char	*rep;
-	char	*path;
+	char	repertoire[4096];
 
-	if (!(p_dir = opendir(line)))
+	if (!(getcwd(repertoire, 4096)))
 	{
-		ft_printf("Cannot open directory <%s>\n", line);
-		// return (0);  Ne pas return 0 mais exit_failure peut etre 
+		data->status = 1;
+		return (1);
 	}
-	getcwd(rep, 4096);
-	path = ft_strdup(rep);
-	path = ft_strjoin(path, "/");
-	path = ft_strjoin(path, line);
-	chdir(path);
-	closedir(p_dir);
+	ft_printf("%s\n", repertoire);
 	dup2(data->savestdout, STDOUT_FILENO);
 	dup2(data->savestdin, STDIN_FILENO);
+	data->status = 0;
 	return (1);
 }
