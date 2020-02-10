@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/10 16:56:18 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/10 18:09:57 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRCS_COMMANDS =		ft_echo.c				\
 					ft_export.c 			\
 					ft_unset.c 				\
 					ft_env.c 				\
-					ft_pwd.c
+					ft_pwd.c				\
+					ft_cd.c
 
 SRCS0 = $(addprefix $(PATH_INIT_PROGRAM), $(SRCS_INIT_PROGRAM))
 SRCS1 = $(addprefix $(PATH_EXEC_COMMAND), $(SRCS_EXEC_COMMAND))

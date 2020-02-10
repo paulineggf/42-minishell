@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 13:19:07 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:41:48 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 		if (tmp->l_chevron || tmp->pipe || tmp->r_chevron || tmp->ld_chevron)
 			separator(data);
 		if (is_builtin(tmp, data) == 0)
-			if (ft_execve(tmp->arg[0], tmp->arg, data->env) == 0)
+			if (ft_execve(tmp, data) == 0)
 				ft_printf("popo & max: command not found: %s\n", tmp->arg[0]);
 	}
 	else if (data->pid < 0)
