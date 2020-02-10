@@ -6,7 +6,11 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/02/10 10:47:07 by pganglof         ###   ########.fr       */
+=======
+/*   Updated: 2020/02/07 17:16:34 by mcraipea         ###   ########.fr       */
+>>>>>>> 0dcb59c4d4eb2efd679141ab4a6cc7229f9bc383
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +84,18 @@ void				double_left_chevron(t_list **tmp, t_data *data);
 
 // parsing
 t_list				*parsing_command(char *line, t_data *data);
-char				**split_shell(char *str);
 int					len_tabtab(char **str);
 char				**add_arg2(char **tmp1, char **tmp2, t_data *data);
 char				**ft_init_env(char **env, t_data *data);
+
+// split_shell
+char				**split_shell(char *str, t_data *data);
+void			    ft_new_line(char *buf, char **tab);
+void				ft_simple_quote(int *i, char *str, char **tab, t_data *data);
+void				ft_double_quote(int *i, char *str, char **tab, t_data *data);
+void			    ft_line_basic(int *i, char *str, char **tab);
+void				ft_chevron(int *i, char *str, char **tab);
+void				ft_error(int flag_double, int flag_simple, t_data *data);
 
 // garbage collector
 void				garbage_init(t_data *data);
