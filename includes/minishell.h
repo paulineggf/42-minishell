@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*   Updated: 2020/02/10 12:08:01 by pganglof         ###   ########.fr       */
 =======
 /*   Updated: 2020/02/10 12:26:01 by pganglof         ###   ########.fr       */
 >>>>>>> pauline
+=======
+/*   Updated: 2020/02/10 15:13:05 by mcraipea         ###   ########.fr       */
+>>>>>>> correctif_cd
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +72,17 @@ int					ft_echo(t_parsing *parsing, t_data *data);
 void				ft_export(t_parsing *tmp, t_data *data);
 void				ft_unset(t_parsing *tmp, t_data *data);
 int					ft_env(t_data *data);
+<<<<<<< HEAD
 int					ft_pwd(t_data *datas);
+=======
+int					ft_cd(t_parsing *parsing, t_data *data);
+>>>>>>> correctif_cd
 
 /* EXEC_COMMAND */
 
 int					exec_command(t_data *data);
 int 			    exec_command_env(t_parsing *tmp, t_data *data);
-int 				ft_execve(char *command, char **argument, char **env);
+int					ft_execve(t_parsing *tmp, t_data *data);
 int					is_builtin(t_parsing *parsing, t_data *data);
 void				left_chevron(t_list **tmp, t_data *data);
 void				right_chevron(t_list **tmp, t_data *data);
@@ -112,7 +120,5 @@ char 				*ft_prompt(t_data *data);
 int					main(int argc, char **argv, char **env);
 void				main_function(t_data *data);
 void				minishell_signals(void);
-
-// int					main(int argc, char **argv);
 
 #endif

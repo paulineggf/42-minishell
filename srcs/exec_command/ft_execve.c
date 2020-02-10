@@ -6,52 +6,79 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/06 17:49:32 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:24:55 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		ft_execve(char *command, char **argument, char **env)
+static void		ft_path(char *path, t_data *data)
 {
-	int				i;
-	char			*path;
-	static char		**path_tab;
-	int				j;
-	int				k;
-	char			*buf;
+	int		i;
+	int		k;
+	int		j;
 
-	path_tab = ft_calloc(sizeof(char*) * 12, 1);
 	i = 0;
-	while (env[i])
+	k = 0;
+	while (data->env[i])
 	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			path = ft_strdup(env[i]);
+		if ((ft_strncmp(data->env[i], "PATH=", 5)) == 0)
+		{
+			j = 5;
+			while (data->env[i][j])
+				path[k++] = data->env[i][j++];
+		}
 		i++;
 	}
-	i = 5;
+}
+
+static void		ft_path_tab(char *path, char **path_tab)
+{
+	char			buf[4096];
+	int				j;
+	int				k;
+	int				i;
+
+	i = 0;
 	j = 0;
 	while (path[i])
 	{
 		k = 0;
-		buf = ft_calloc(128, 1);
+		ft_bzero(buf, 4096);
 		while (path[i] != ':' && path[i])
-		{
-			buf[k++] = path[i];
-			i++;
-		}
+			buf[k++] = path[i++];
 		if (path[i] == ':')
 			i++;
 		path_tab[j] = ft_strdup(buf);
 		j++;
 	}
+}
+
+int				ft_execve(t_parsing *tmp, t_data *data)
+{
+	int				i;
+	char			path[4096];
+	static char		**path_tab;
+
 	i = 0;
-	while (path_tab[i])
+	path_tab = ft_calloc(sizeof(char*) * 128, 1);
+	ft_bzero(path, 4096);
+	if ((ft_strncmp(tmp->arg[0], "/", 1)) == 0)
 	{
-		path_tab[i] = ft_strjoin(path_tab[i], "/");
-		path_tab[i] = ft_strjoin(path_tab[i], command);
-		if (execve(path_tab[i], argument, env) == -1)
-			i++;
+		if (execve(tmp->arg[0], tmp->arg, data->env) == -1)
+			return (0);
+	}
+	else
+	{
+		ft_path(path, data);
+		ft_path_tab(path, path_tab);
+		while (path_tab[i])
+		{
+			path_tab[i] = ft_strjoin(path_tab[i], "/");
+			path_tab[i] = ft_strjoin(path_tab[i], tmp->arg[0]);
+			if (execve(path_tab[i], tmp->arg, data->env) == -1)
+				i++;
+		}
 	}
 	return (0);
 }
