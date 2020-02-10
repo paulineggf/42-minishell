@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 12:12:37 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:43:23 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		exit_failure(char *str, t_data *data)
 	ft_lstclear(&(data->garbage_collector), &free);
 	if (str)
 		ft_putstr_fd(str, 2);
+	data->status = 1;
 	main_function(data);
 }
 

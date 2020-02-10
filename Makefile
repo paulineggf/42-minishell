@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/10 14:41:15 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/10 16:56:18 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS_INIT_PROGRAM =	main.c					\
 					parsing_command.c 		\
 					split_shell.c			\
 					split_shell2.c			\
+					split_shell3.c 			\
 					len_tabtab.c 			\
 					add_arg2.c 				\
 					ft_init_env.c			\

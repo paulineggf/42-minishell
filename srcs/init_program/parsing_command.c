@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:22:50 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/07 15:10:05 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:58:26 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ t_list				*parsing_command(char *line, t_data *data)
 
 	i = 0;
 	begin_list = NULL;
-	if (!(data->str_split = split_shell(line, data)))
-		exit_failure("ft_split", data);
+	data->str_split = split_shell(line, data);
 	add_garbage((void**)&data->str_split, data);
 	while (data->str_split[i])
 	{
