@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:49:58 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 09:48:38 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:19:09 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,7 @@ void	main_function(t_data *data)
 			exit_failure2(data);
 		data->lst_parsing = NULL;
 		data->lst_parsing = parsing_command(line, data);
-		pipe(data->mypipefd);
 		data->status = exec_command(data);
-		// dup2(data->savestdout, STDOUT_FILENO);
-		// dup2(data->savestdin, STDIN_FILENO);
-		// free(line);
-		line = NULL;
 		ft_lstclear(&data->garbage_collector, &free);
 	}
 }
