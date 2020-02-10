@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/02/07 17:13:45 by pganglof         ###   ########.fr       */
-=======
-/*   Updated: 2020/02/07 15:31:44 by mcraipea         ###   ########.fr       */
->>>>>>> 0dcb59c4d4eb2efd679141ab4a6cc7229f9bc383
+/*   Updated: 2020/02/10 12:10:10 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

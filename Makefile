@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
+#    By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2020/02/10 10:44:35 by pganglof         ###   ########.fr        #
-=======
-#    Updated: 2020/02/07 16:55:49 by mcraipea         ###   ########.fr        #
->>>>>>> 0dcb59c4d4eb2efd679141ab4a6cc7229f9bc383
+#    Updated: 2020/02/10 13:07:49 by mcraipea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +38,8 @@ SRCS_EXEC_COMMAND = exec_command.c 			\
 SRCS_COMMANDS =		ft_echo.c				\
 					ft_export.c 			\
 					ft_unset.c 				\
-					ft_env.c
+					ft_env.c				\
+					ft_cd.c
 
 SRCS0 = $(addprefix $(PATH_INIT_PROGRAM), $(SRCS_INIT_PROGRAM))
 SRCS1 = $(addprefix $(PATH_EXEC_COMMAND), $(SRCS_EXEC_COMMAND))
