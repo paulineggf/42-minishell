@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:51:42 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 10:40:49 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:55:58 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int		ft_echo(t_parsing *parsing, t_data *data)
 		{
 			++i;
 			while (parsing->arg[++i + 1])
-				ft_putstr_fd(ft_strjoin(parsing->arg[i], " "), 1);
+				ft_printf("%s ", parsing->arg[i]);
 			ft_putstr_fd(parsing->arg[i], 1);
 		}
 		else if (parsing->arg[1] != NULL && ft_strcmp(parsing->arg[1], "-n"))
 		{
 			while (parsing->arg[++i + 1])
-				ft_putstr_fd(ft_strjoin(parsing->arg[i], " "), 1);
-			ft_putstr_fd(ft_strjoin(parsing->arg[i], "\n"), 1);
+				ft_printf("%s ", parsing->arg[i]);
+			ft_printf("%s\n", parsing->arg[i]);
 		}
 		else if (parsing->arg[1] == NULL)
 			ft_putstr_fd("\n", 1);
