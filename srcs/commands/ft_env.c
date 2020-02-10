@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_builtin.c                                       :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 10:38:48 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 10:47:00 by pganglof         ###   ########.fr       */
+/*   Created: 2020/02/10 10:40:17 by pganglof          #+#    #+#             */
+/*   Updated: 2020/02/10 10:46:56 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_builtin(t_parsing *parsing, t_data *data)
+int		ft_env(t_data *data)
 {
-	(void)parsing;
-	(void)data;
-	if (!ft_strcmp(parsing->arg[0], "echo"))
-		return (ft_echo(parsing, data));
-	else if (!ft_strcmp(parsing->arg[0], "env"))
-		return (ft_env(data));
-	else
-		return (0);
-	// else if (!ft_strcmp(parsing->arg[0], "cd"))
-	// 	return (ft_cd(parsing));
-	// else if (!ft_strcmp(parsing->arg[0], "pwd"))
-	// 	return (ft_pwd(parsing));
+	int		i;
 
+	i = 0;
+	while (data->env[i])
+	{
+		ft_putstr(data->env[i++]);
+		write(1, "\n", 1);
+	}
+	dup2(data->savestdout, STDOUT_FILENO);
+	dup2(data->savestdin, STDIN_FILENO);
+	return (1);
 }
