@@ -6,15 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2020/02/10 12:08:01 by pganglof         ###   ########.fr       */
-=======
-/*   Updated: 2020/02/10 12:26:01 by pganglof         ###   ########.fr       */
->>>>>>> pauline
-=======
-/*   Updated: 2020/02/10 15:13:05 by mcraipea         ###   ########.fr       */
->>>>>>> correctif_cd
+/*   Updated: 2020/02/10 15:41:21 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +64,8 @@ int					ft_echo(t_parsing *parsing, t_data *data);
 void				ft_export(t_parsing *tmp, t_data *data);
 void				ft_unset(t_parsing *tmp, t_data *data);
 int					ft_env(t_data *data);
-<<<<<<< HEAD
 int					ft_pwd(t_data *datas);
-=======
 int					ft_cd(t_parsing *parsing, t_data *data);
->>>>>>> correctif_cd
 
 /* EXEC_COMMAND */
 
