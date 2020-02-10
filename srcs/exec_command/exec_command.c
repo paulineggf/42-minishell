@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/07 17:26:24 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/10 09:53:44 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ static void		separator(t_data *data)
 			double_left_chevron(&tmp, data);
 		else if (((t_parsing*)(tmp->content))->pipe)
 		{
-			data->savestdout = dup(STDOUT_FILENO);
+			// data->savestdout = dup(STDOUT_FILENO);
 			dup2(data->mypipefd[1], STDOUT_FILENO);
+			// data->savestdin = dup(STDIN_FILENO);
+			// dup2(data->mypipefd[1], STDIN_FILENO);
 			break ;
 		}
 		else
@@ -84,8 +86,8 @@ int				exec_command(t_data *data)
 	int		ret;
 
 	ret = 0;
-	data->savestdin = 0;
-	data->savestdout = 1;
+	// data->savestdin = 0;
+	// data->savestdout = 1;
 	// pipe(data->mypipefd);
 	if (data->lst_parsing)
 		ret = exec_command_env((t_parsing*)(data->lst_parsing->content), data);
