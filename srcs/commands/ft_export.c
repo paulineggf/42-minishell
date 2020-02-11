@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:59:57 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:19:12 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void			ft_export(t_parsing *tmp, t_data *data)
 	while (data->env[i])
 		i++;
 	data->env = add_env(&i, data->env, tmp->arg[1], data);
+	data->ret = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 15:38:23 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:22:05 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		ft_cd_classic(char *path, t_parsing *parsing)
 
 static void		ft_cd_error(t_parsing *parsing, t_data *data)
 {
-	data->status = 1;
+	data->ret = 1;
 	ft_putstr_fd("Cannot open directory <", 2);
 	ft_putstr_fd(parsing->arg[1], 2);
 	ft_putstr_fd(">\n", 2);
@@ -60,7 +60,9 @@ static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
 		closedir(p_dir);
 	dup2(data->savestdout, STDOUT_FILENO);
 	dup2(data->savestdin, STDIN_FILENO);
-	data->status = 0;
+	close(data->savestdout);
+	close(data->savestdin);
+	data->ret = 0;
 }
 
 int				ft_cd(t_parsing *parsing, t_data *data)
