@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 18:04:41 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:28:04 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			ft_error(int flag_double, int flag_simple, t_data *data)
 		exit_failure("Minishell: Il manque un simple chevron.\n", data);
 }
 
-static void		ft_other_case(int *i, char *str, char **tab, t_data *data)
+void			ft_other_case(int *i, char *str, char **tab, t_data *data)
 {
 	char		buf[256];
 
@@ -87,7 +87,7 @@ static char		*ft_del_quote(char *str, int j, t_data *data)
 	return (dest);
 }
 
-char		**split_shell(char *str, t_data *data)
+char			**split_shell(char *str, t_data *data)
 {
 	int			i;
 	char		**tab;
@@ -96,6 +96,7 @@ char		**split_shell(char *str, t_data *data)
 	if (!(tab = ft_calloc(sizeof(char*) * 256, 1)))
 		exit_failure("ft_calloc", data);
 	str = ft_del_quote(str, 0, data);
+	str = ft_del_slash(str, 0, data);
 	while (str[i])
 	{
 		while (str[i] && str[i] == ' ')
@@ -105,13 +106,7 @@ char		**split_shell(char *str, t_data *data)
 		else if (str[i] == '\'')
 			ft_simple_quote(&i, str, tab, data);
 		else
-		{
-			ft_line_basic(&i, str, tab, data);
-			if (str[i] == '>')
-				ft_chevron(&i, str, tab, data);
-			else if (str[i] == '<' || str[i] == ';' || str[i] == '|')
-				ft_other_case(&i, str, tab, data);
-		}
+			ft_else_split(&i, str, tab, data);
 	}
 	control_env(tab, data);
 	return (tab);
