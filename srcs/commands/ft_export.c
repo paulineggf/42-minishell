@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 17:33:07 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:35:30 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char		**add_env(int *i, char **env, char *value, t_data *data)
 	return (new);
 }
 
-void			ft_export(t_parsing *tmp, t_data *data)
+void		ft_export(t_parsing *tmp, t_data *data)
 {
 	int			i;
 	char		buffer[128];

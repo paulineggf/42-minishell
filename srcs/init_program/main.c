@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:46:38 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 19:24:44 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:44:09 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int			main(int argc, char **argv, char **env)
 {
 	t_data		*data;
 
-	(void)argv;
-	(void)env;
-	if (!(data = ft_calloc(1, sizeof(t_data))))
-		return (0);
-	data->env = ft_init_env(env, data);
-	garbage_init(data);
 	if (argc == 1)
+	{
+		if (!(data = ft_calloc(1, sizeof(t_data))))
+			return (1);
+		data->env = ft_init_env(env, data);
+		garbage_init(data);
 		main_function(data);
+	}
+	else
+		ft_printf("popo & max: %s: No such file or directory\n", argv[1]);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 17:36:44 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:28:44 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
 	data->ret = 0;
 }
 
-int				ft_cd(t_parsing *parsing, t_data *data)
+void			ft_cd(t_parsing *parsing, t_data *data)
 {
 	DIR		*p_dir;
 	char	path[4096];
@@ -85,10 +85,9 @@ int				ft_cd(t_parsing *parsing, t_data *data)
 	else if (!(p_dir))
 	{
 		ft_cd_error(parsing, data);
-		return (1);
+		return ;
 	}
 	else
 		ft_cd_classic(path, parsing);
 	ft_change_path(path, p_dir, data);
-	return (1);
 }

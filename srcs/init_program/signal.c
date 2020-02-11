@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:54:55 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 14:41:32 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 18:35:43 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static void		minishell_signals_handler2(int i)
 	if (i == SIGINT)
 	{
 		ft_putstr("\n");
-		// if ((data->str_prompt = ft_prompt(data)))
-		// 	ft_putstr(data->str_prompt);
 		signal(SIGINT, minishell_signals_handler);
 		signal(SIGINT, SIG_IGN);
 	}
@@ -53,8 +51,6 @@ static void		minishell_signals_handler2(int i)
 	{
 		waitpid(data->pid, &data->status, 0);
 		ft_printf("Quit: %d\n", data->status);
-		// if ((data->str_prompt = ft_prompt(data)))
-		// 	ft_putstr(data->str_prompt);
 	}
 }
 
@@ -63,7 +59,4 @@ void			minishell_signals2(void)
 	signal(SIGQUIT, minishell_signals_handler2);
 	signal(SIGINT, SIG_IGN);
 	signal(SIGINT, minishell_signals_handler2);
-	// {
-	// 	signal(SIGINT, minishell_signals_handler2);
-	// }
 }
