@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 15:41:48 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/10 19:48:44 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void		separator(t_data *data)
 static void		fork_function(t_parsing *tmp, t_data *data)
 {
 	data->pid = fork();
+	minishell_signals2();
 	if (data->pid == 0)
 	{
 		data->savestdin = dup(STDIN_FILENO);
@@ -52,7 +53,10 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 	else if (data->pid < 0)
 		exit_failure("fork", data);
 	else
+	{
 		waitpid(data->pid, &data->status, 0);
+		exit(data->status);
+	}
 	close(data->mypipefd[0]);
 	close(data->mypipefd[1]);
 }
@@ -93,14 +97,14 @@ int				exec_command(t_data *data)
 		fork_function((t_parsing*)(data->lst_parsing->content), data);
 		check_separator(data);
 		data->lst_parsing = data->lst_parsing->next;
-		data->status = exec_command(data);
+		data->ret = exec_command(data);
 	}
 	else if (ret == 1)
 	{
 		data->lst_parsing = data->lst_parsing->next;
-		data->status = exec_command(data);
+		data->ret = exec_command(data);
 	}
 	close(data->mypipefd[0]);
 	close(data->mypipefd[1]);
-	return (data->status);
+	return (data->ret);
 }

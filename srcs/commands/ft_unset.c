@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/06 16:36:57 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/10 16:21:24 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void			ft_unset(t_parsing *tmp, t_data *data)
 	while (data->env[i])
 		i++;
 	data->env = del_env(&i, data->env, tmp->arg[1], data);
+	data->ret = 0;
 }
