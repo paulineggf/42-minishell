@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 17:21:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:36:44 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ static void		ft_cd_error(t_parsing *parsing, t_data *data)
 static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
 {
 	int		i;
+	char	repertoire[4096];
 
 	i = 0;
 	while (data->env[i])
 		i++;
 	chdir(path);
-	data->env = del_env(&i, data->env, "PWD=", data);
-	path = ft_strjoin("PWD=", path);
+	getcwd(repertoire, 4096);
+	data->env = del_env2(&i, data->env, "PWD=", data);
+	path = ft_strjoin("PWD=", repertoire);
 	data->env = add_env(&i, data->env, path, data);
 	if (p_dir != NULL)
 		closedir(p_dir);

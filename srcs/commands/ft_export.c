@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 17:22:47 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:33:07 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,6 @@ char		**add_env(int *i, char **env, char *value, t_data *data)
 	return (new);
 }
 
-char		**del_env(int *i, char **env, char *value, t_data *data)
-{
-	int			j;
-	int			k;
-	char		**new;
-
-	j = -1;
-	while (env[++j])
-	{
-		if (ft_strcmp(env[j], value) == 0)
-		{
-			if (!(new = ft_calloc(*i, sizeof(char*))))
-				exit_failure("malloc", data);
-			k = 0;
-			j = -1;
-			while (env[++j])
-			{
-				if (ft_strcmp(env[j], value) != 0)
-					if (!(new[k++] = ft_strdup(env[j])))
-						exit_failure("ft_strdup", data);
-				free(env[j]);
-			}
-			return (new);
-		}
-	}
-	return (env);
-}
-
 void			ft_export(t_parsing *tmp, t_data *data)
 {
 	int			i;
@@ -80,7 +52,7 @@ void			ft_export(t_parsing *tmp, t_data *data)
 	i = 0;
 	while (data->env[i])
 		i++;
-	data->env = del_env(&i, data->env, buffer, data);
+	data->env = del_env2(&i, data->env, buffer, data);
 	i = 0;
 	while (data->env[i])
 		i++;
