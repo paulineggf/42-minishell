@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 13:38:31 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:49:30 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,32 @@ static void		ft_path_tab(char *path, char **path_tab)
 	}
 }
 
+static void		ft_execve2(char *path, char **path_tab,
+	t_parsing *tmp, t_data *data)
+{
+	int			i;
+
+	i = 0;
+	ft_path(path, data);
+	ft_path_tab(path, path_tab);
+	while (path_tab[i])
+	{
+		if (!(path_tab[i] = ft_strjoin(path_tab[i], "/")))
+			exit_failure("ft_strjoin", data);
+		if (!(path_tab[i] = ft_strjoin(path_tab[i], tmp->arg[0])))
+			exit_failure("ft_strjoin", data);
+		if (execve(path_tab[i], tmp->arg, data->env) == -1)
+			i++;
+	}
+}
+
 int				ft_execve(t_parsing *tmp, t_data *data)
 {
-	int				i;
 	char			path[4096];
 	static char		**path_tab;
 
-	i = 0;
-	path_tab = ft_calloc(sizeof(char*) * 128, 1); //protectionnnnnnnn
+	if (!(path_tab = ft_calloc(sizeof(char*) * 128, 1)))
+		exit_failure("ft_calloc", data);
 	ft_bzero(path, 4096);
 	if ((ft_strncmp(tmp->arg[0], "/", 1)) == 0)
 	{
@@ -69,16 +87,6 @@ int				ft_execve(t_parsing *tmp, t_data *data)
 			return (0);
 	}
 	else
-	{
-		ft_path(path, data);
-		ft_path_tab(path, path_tab);
-		while (path_tab[i])
-		{
-			path_tab[i] = ft_strjoin(path_tab[i], "/");
-			path_tab[i] = ft_strjoin(path_tab[i], tmp->arg[0]);
-			if (execve(path_tab[i], tmp->arg, data->env) == -1)
-				i++;
-		}
-	}
+		ft_execve2(path, path_tab, tmp, data);
 	return (0);
 }
