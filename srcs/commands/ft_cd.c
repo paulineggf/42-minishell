@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 15:59:46 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:21:40 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,17 @@ static void		ft_cd_error(t_parsing *parsing, t_data *data)
 
 static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
 {
+	int		i;
+
+	i = 0;
+	while (data->env[i])
+		i++;
 	chdir(path);
+	data->env = del_env(&i, data->env, "PWD=", data);
+	path = ft_strjoin("PWD=", path);
+	data->env = add_env(&i, data->env, path, data);
 	if (p_dir != NULL)
 		closedir(p_dir);
-	dup2(data->savestdout, STDOUT_FILENO);
-	dup2(data->savestdin, STDIN_FILENO);
-	close(data->savestdout);
-	close(data->savestdin);
 	data->ret = 0;
 }
 
@@ -84,6 +88,5 @@ int				ft_cd(t_parsing *parsing, t_data *data)
 	else
 		ft_cd_classic(path, parsing);
 	ft_change_path(path, p_dir, data);
-	exit(data->ret);
 	return (1);
 }
