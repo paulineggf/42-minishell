@@ -6,13 +6,13 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 16:00:31 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:05:31 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char		**del_env(int *i, char **env, char *value, t_data *data)
+static char		**del_env2(int *i, char **env, char *value, t_data *data)
 {
 	int			j;
 	int			k;
@@ -48,7 +48,7 @@ void			ft_unset(t_parsing *tmp, t_data *data)
 	i = 0;
 	while (data->env[i])
 		i++;
-	data->env = del_env(&i, data->env, tmp->arg[1], data);
+	data->env = del_env2(&i, data->env, tmp->arg[1], data);
 	data->ret = 0;
 	exit(data->ret);
 }

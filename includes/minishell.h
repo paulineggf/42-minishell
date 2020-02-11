@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 16:52:14 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:04:49 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct		s_data
 // commands
 int					ft_echo(t_parsing *parsing, t_data *data);
 void				ft_export(t_parsing *tmp, t_data *data);
+char				**add_env(int *i, char **env, char *value, t_data *data);
+char				**del_env(int *i, char **env, char *value, t_data *data);
 void				ft_unset(t_parsing *tmp, t_data *data);
 int					ft_env(t_data *data);
 int					ft_pwd(t_data *datas);

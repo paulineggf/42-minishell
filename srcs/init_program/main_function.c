@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:49:58 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/11 14:36:24 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:52:14 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	main_function(t_data *data)
 	char		*line;
 	int			ret;
 
-	// signal(SIGINT, SIG_IGN);
-	// signal(SIGQUIT, SIG_IGN);
 	minishell_signals();
 	while (1)
 	{

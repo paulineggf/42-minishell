@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:38:11 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/04 15:24:37 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:50:39 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int		exec_command_env(t_parsing *tmp, t_data *data)
 	else if (ft_strcmp(tmp->arg[0], "unset") == 0)
 	{
 		ft_unset(tmp, data);
+		return (1);
+	}
+	else if (ft_strcmp(tmp->arg[0], "cd") == 0)
+	{
+		ft_cd(tmp, data);
 		return (1);
 	}
 	return (0);
