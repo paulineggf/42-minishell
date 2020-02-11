@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 17:15:55 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:22:47 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,4 @@ void			ft_export(t_parsing *tmp, t_data *data)
 		i++;
 	data->env = add_env(&i, data->env, tmp->arg[1], data);
 	data->ret = 0;
-	// exit(data->ret);
 }

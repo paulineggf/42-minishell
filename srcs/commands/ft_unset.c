@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 17:05:31 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 17:22:51 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ void			ft_unset(t_parsing *tmp, t_data *data)
 		i++;
 	data->env = del_env2(&i, data->env, tmp->arg[1], data);
 	data->ret = 0;
-	exit(data->ret);
 }
