@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/11 13:43:06 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:02:34 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,17 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 			separator(data);
 		if (is_builtin(tmp, data) == 0)
 			if (ft_execve(tmp, data) == 0)
+			{
 				ft_printf("popo & max: command not found: %s\n", tmp->arg[0]);
+				exit((data->ret = 127));
+			}
 	}
 	else if (data->pid < 0)
 		exit_failure("fork", data);
 	else
 	{
 		waitpid(data->pid, &data->status, 0);
-		exit(data->status);
+		data->ret = WEXITSTATUS(data->status);
 	}
 	close(data->mypipefd[0]);
 	close(data->mypipefd[1]);

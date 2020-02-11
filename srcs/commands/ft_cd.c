@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 16:22:05 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:59:46 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int				ft_cd(t_parsing *parsing, t_data *data)
 	else
 		ft_cd_classic(path, parsing);
 	ft_change_path(path, p_dir, data);
+	exit(data->ret);
 	return (1);
 }

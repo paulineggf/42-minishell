@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 17:50:18 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 14:11:47 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			control_env(char **tab, t_data *data)
 	while (tab[++i])
 	{
 		j = -1;
-		if (tab[i][0] == '$')
+		if (tab[i][0] == '$' && tab[i][1] != '?')
 		{
 			size = ft_strlen(&tab[i][1]);
 			while (data->env[++j])

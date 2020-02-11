@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:51:42 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 16:19:36 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 15:58:24 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void		ft_echo_n(t_parsing *parsing, t_data *data)
 	int		i;
 
 	i = 1;
+	(void)data;
 	while (parsing->arg[++i + 1])
 	{
 		if (!ft_strcmp(parsing->arg[i], "$?"))
@@ -34,13 +35,15 @@ static void		ft_echo2(t_parsing *parsing, t_data *data)
 {
 	int		i;
 
-	i = 0;
-	while (parsing->arg[++i + 1])
+	i = 1;
+	(void)data;
+	while (parsing->arg[i + 1])
 	{
 		if (!ft_strcmp(parsing->arg[i], "$?"))
 			ft_printf("%d ", data->ret);
 		else
 			ft_printf("%s ", parsing->arg[i]);
+		i++;
 	}
 	if (!ft_strcmp(parsing->arg[i], "$?"))
 		ft_printf("%d\n", data->ret);
@@ -69,5 +72,6 @@ int				ft_echo(t_parsing *parsing, t_data *data)
 	dup2(data->savestdin, STDIN_FILENO);
 	close(data->savestdout);
 	close(data->savestdin);
+	exit(data->ret);
 	return (1);
 }

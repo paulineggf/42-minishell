@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 12:19:57 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 16:22:17 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:51:20 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int			ft_pwd(t_data *data)
 	close(data->savestdout);
 	close(data->savestdin);
 	data->ret = 0;
+	exit(data->status);
 	return (1);
 }

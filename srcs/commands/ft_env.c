@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:40:17 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/10 16:22:12 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 16:00:10 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int		ft_env(t_data *data)
 	close(data->savestdout);
 	close(data->savestdin);
 	data->ret = 0;
+	exit(data->ret);
 	return (1);
 }
