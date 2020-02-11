@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 18:09:53 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:40:33 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <dirent.h>
 # include <string.h>
 # include <signal.h>
+# include <sys/wait.h>
 # include "libft.h"
 # include "ft_printf.h"
 
@@ -46,6 +47,7 @@ typedef struct		s_data
 {
 	char			**env;
 	int				inputfd;
+	int				ret;
 	int				status;
 	int				savestdout;
 	int				savestdin;
@@ -110,5 +112,6 @@ char 				*ft_prompt(t_data *data);
 int					main(int argc, char **argv, char **env);
 void				main_function(t_data *data);
 void				minishell_signals(void);
+void				minishell_signals2(void);
 
 #endif

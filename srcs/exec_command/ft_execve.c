@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 15:24:55 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:38:31 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				ft_execve(t_parsing *tmp, t_data *data)
 	static char		**path_tab;
 
 	i = 0;
-	path_tab = ft_calloc(sizeof(char*) * 128, 1);
+	path_tab = ft_calloc(sizeof(char*) * 128, 1); //protectionnnnnnnn
 	ft_bzero(path, 4096);
 	if ((ft_strncmp(tmp->arg[0], "/", 1)) == 0)
 	{
