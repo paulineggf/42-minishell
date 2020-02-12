@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/12 09:44:13 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 12:45:47 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 		if (is_builtin(tmp, data) == 0)
 			if (ft_execve(tmp, data) == 0)
 			{
-				ft_printf("popo & max: command not found: %s\n", tmp->arg[0]);
+				ft_putstr_fd("popo & max: ", 2);
+				ft_putstr_fd(tmp->arg[0], 2);
+				ft_putstr_fd(": command not found\n", 2);
 				exit((data->ret = 127));
 			}
 	}
@@ -60,8 +62,6 @@ static void		fork_function(t_parsing *tmp, t_data *data)
 		waitpid(data->pid, &data->status, 0);
 		data->ret = WEXITSTATUS(data->status);
 	}
-	close(data->mypipefd[0]);
-	close(data->mypipefd[1]);
 }
 
 static void		check_separator(t_data *data)
@@ -85,7 +85,7 @@ static void		check_separator(t_data *data)
 	}
 }
 
-void				exec_command(t_data *data)
+void			exec_command(t_data *data)
 {
 	int		ret;
 
