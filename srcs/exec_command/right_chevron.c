@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   right_chevron.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:22:00 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/12 11:50:03 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 12:17:27 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void		right_chevron(t_list **tmp, t_data *data)
 		ft_printf("popo & max: %s: No such file or directory\n",
 		((t_parsing*)((*tmp)->content))->arg[i]);
 	dup2(data->mypipefd[1], STDIN_FILENO);
+	}
 }
