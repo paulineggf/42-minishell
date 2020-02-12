@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 09:52:37 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:45:41 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ static void		ft_execve2(char *path, char **path_tab,
 	{
 		if (!(path_tab[i] = ft_strjoin(path_tab[i], "/")))
 			exit_failure("ft_strjoin", data);
+		add_garbage((void**)&path_tab[i], data);
 		if (!(path_tab[i] = ft_strjoin(path_tab[i], tmp->arg[0])))
 			exit_failure("ft_strjoin", data);
+		add_garbage((void**)&path_tab[i], data);
 		if (execve(path_tab[i], tmp->arg, data->env) == -1)
 			i++;
 	}

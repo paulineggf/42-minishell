@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/12 12:52:13 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 14:23:47 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char		*ft_new_str(char *tab, char *env, t_data *data)
+static char		*ft_new_str(char *env, t_data *data)
 {
 	int		i;
 	char	*new;
 
 	i = 0;
-	free(tab);
 	while (env[i] != '=')
 		i++;
 	i++;
 	if (!(new = ft_strdup(&env[i])))
 		exit_failure("ft_strdup", data);
+	add_garbage((void**)&new, data);
 	return (new);
 }
 
@@ -45,7 +45,7 @@ void			control_env(char **tab, t_data *data)
 				if (!ft_strncmp(&tab[i][1], data->env[j], size)
 				&& data->env[j][size] == '=')
 				{
-					tab[i] = ft_new_str(tab[i], data->env[j], data);
+					tab[i] = ft_new_str(data->env[j], data);
 					return ;
 				}
 			}

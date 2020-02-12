@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/02/12 12:51:18 by mcraipea         ###   ########.fr       */
-=======
-/*   Updated: 2020/02/12 12:50:16 by pganglof         ###   ########.fr       */
->>>>>>> mini_tests
+/*   Updated: 2020/02/12 17:44:49 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +83,7 @@ char				**add_arg2(char **tmp1, char **tmp2, t_data *data);
 char				**ft_init_env(char **env, t_data *data);
 char				**split_shell(char *str, t_data *data);
 void				ft_new_line(char *buf, char **tab, t_data *data);
-void				ft_simple_quote(int *i, char *str,
+int					ft_simple_quote(int *i, char *str,
 					char **tab, t_data *data);
 void				ft_double_quote(int *i, char *str,
 					char **tab, t_data *data);

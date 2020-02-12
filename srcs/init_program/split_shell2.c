@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 12:51:44 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 14:26:30 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			ft_new_line(char *buf, char **tab, t_data *data)
 	tab[i][j] = '\0';
 }
 
-void			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
+int			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
 {
 	int			j;
 	char		buf[256];
@@ -52,6 +52,7 @@ void			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
 	}
 	else
 		ft_error(0, 1, data);
+	return (1);
 }
 
 void			ft_double_quote(int *i, char *str, char **tab, t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 12:42:37 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 14:26:56 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,12 @@ char			**split_shell(char *str, t_data *data)
 {
 	int			i;
 	char		**tab;
+	int			ret;
 
 	i = 0;
+	ret = 0;
 	easy_malloc((void**)&tab, sizeof(char*) * 256, data);
 	str = ft_del_quote(str, 0, data);
-	//str = ft_del_slash(str, 0, data);
 	while (str[i])
 	{
 		while (str[i] && str[i] == ' ')
@@ -101,10 +102,11 @@ char			**split_shell(char *str, t_data *data)
 		if (str[i] == '"')
 			ft_double_quote(&i, str, tab, data);
 		else if (str[i] == '\'')
-			ft_simple_quote(&i, str, tab, data);
+			ret = ft_simple_quote(&i, str, tab, data);
 		else
 			ft_else_split(&i, str, tab, data);
 	}
-	control_env(tab, data);
+	if (ret == 0)
+		control_env(tab, data);
 	return (tab);
 }
