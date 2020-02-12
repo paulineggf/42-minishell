@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:54:55 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 11:36:32 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 11:51:34 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static void		minishell_signals_handler(int i)
 		signal(SIGINT, minishell_signals_handler);
 	}
 	else if (i == SIGQUIT)
-		ft_printf("\b\b%c%c\b\b", 0x7f, 0x7f);	
+	{
+		ft_printf("\b\b%c%c\b\b", 0x7f, 0x7f);
+		signal(SIGQUIT, minishell_signals_handler);
+	}
 }
 
 void			minishell_signals(void)
@@ -45,18 +48,19 @@ static void		minishell_signals_handler2(int i)
 	{
 		ft_putstr("\n");
 		signal(SIGINT, minishell_signals_handler);
-		// signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, minishell_signals_handler);
 	}
 	else if (i == SIGQUIT)
 	{
 		waitpid(data->pid, &data->status, 0);
 		ft_printf("Quit: %d\n", data->status);
+		signal(SIGQUIT, minishell_signals_handler);
+		signal(SIGINT, minishell_signals_handler);
 	}
 }
 
 void			minishell_signals2(void)
 {
 	signal(SIGQUIT, minishell_signals_handler2);
-	// signal(SIGINT, SIG_IGN);
 	signal(SIGINT, minishell_signals_handler2);
 }
