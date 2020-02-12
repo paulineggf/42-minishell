@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 16:28:04 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 10:29:48 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static char		*ft_del_quote2(char *str, int j, t_data *data)
 
 	i = 0;
 	size = ft_strlen(str);
-	if (!(dest = ft_calloc(sizeof(char), size + 1)))
-		exit_failure("ft_calloc", data);
+	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
 	while (str[i])
 	{
 		if (str[i] == '\'')
@@ -66,8 +65,7 @@ static char		*ft_del_quote(char *str, int j, t_data *data)
 
 	i = 0;
 	size = ft_strlen(str);
-	if (!(dest = ft_calloc(sizeof(char), size + 1)))
-		exit_failure("ft_calloc", data);
+	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
 	while (str[i])
 	{
 		if (str[i] == '"')
@@ -93,8 +91,7 @@ char			**split_shell(char *str, t_data *data)
 	char		**tab;
 
 	i = 0;
-	if (!(tab = ft_calloc(sizeof(char*) * 256, 1)))
-		exit_failure("ft_calloc", data);
+	easy_malloc((void**)&tab, sizeof(char*) * 256, data);
 	str = ft_del_quote(str, 0, data);
 	str = ft_del_slash(str, 0, data);
 	while (str[i])

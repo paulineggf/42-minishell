@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/10 15:08:47 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 10:36:42 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void			ft_new_line(char *buf, char **tab, t_data *data)
 	size_line = ft_strlen(buf);
 	while (tab[i])
 		i++;
-	if (!(tab[i] = malloc(sizeof(char) * size_line + 1)))
-		exit_failure("malloc", data);
+	easy_malloc((void**)&tab[i], sizeof(char) * (size_line + 1), data);
 	while (buf[j])
 	{
 		tab[i][j] = buf[j];

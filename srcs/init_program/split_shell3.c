@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/11 17:24:09 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 10:38:04 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ char			*ft_del_slash(char *str, int j, t_data *data)
 
 	i = 0;
 	size = ft_strlen(str);
-	if (!(dest = ft_calloc(sizeof(char), size + 1)))
-		exit_failure("ft_calloc", data);
+	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
 	while (str[i])
 	{
 		if (str[i] == '\\')

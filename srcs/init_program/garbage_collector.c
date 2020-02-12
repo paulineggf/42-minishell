@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 18:44:48 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 10:24:04 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ void		easy_malloc(void **content, size_t n, t_data *data)
 {
 	t_list	*new;
 
-	if (!(*content = malloc(n)))
-		exit_failure("malloc", data);
-	ft_bzero(*content, n);
+	if (!(*content = ft_calloc(1, n)))
+		exit_failure("ft_calloc", data);
 	if (!(new = ft_lstnew(*content)))
 		exit_failure("ft_lstnew", data);
 	ft_lstadd_back(&(data->garbage_collector), new);

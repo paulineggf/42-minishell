@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 16:52:06 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 09:52:37 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		ft_path(char *path, t_data *data)
 	}
 }
 
-static void		ft_path_tab(char *path, char **path_tab)
+static void		ft_path_tab(char *path, char **path_tab, t_data *data)
 {
 	char			buf[4096];
 	int				j;
@@ -49,19 +49,21 @@ static void		ft_path_tab(char *path, char **path_tab)
 			buf[k++] = path[i++];
 		if (path[i] == ':')
 			i++;
-		path_tab[j] = ft_strdup(buf);
+		if (!(path_tab[j] = ft_strdup(buf)))
+			exit_failure("ft_strdup", data);
+		add_garbage((void**)&path_tab[j], data);
 		j++;
 	}
 }
 
 static void		ft_execve2(char *path, char **path_tab,
-	t_parsing *tmp, t_data *data)
+				t_parsing *tmp, t_data *data)
 {
 	int			i;
 
 	i = 0;
 	ft_path(path, data);
-	ft_path_tab(path, path_tab);
+	ft_path_tab(path, path_tab, data);
 	while (path_tab[i])
 	{
 		if (!(path_tab[i] = ft_strjoin(path_tab[i], "/")))
@@ -80,6 +82,7 @@ int				ft_execve(t_parsing *tmp, t_data *data)
 
 	if (!(path_tab = ft_calloc(sizeof(char*) * 128, 1)))
 		exit_failure("ft_calloc", data);
+	add_garbage((void**)&path_tab, data);
 	ft_bzero(path, 4096);
 	if ((ft_strncmp(tmp->arg[0], "/", 1)) == 0)
 	{

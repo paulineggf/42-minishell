@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 18:29:49 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 09:43:16 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void				ft_cd(t_parsing *parsing, t_data *data);
 
 /* EXEC_COMMAND */
 
-int					exec_command(t_data *data);
+void				exec_command(t_data *data);
 int 			    exec_command_env(t_parsing *tmp, t_data *data);
 int					ft_execve(t_parsing *tmp, t_data *data);
 int					is_builtin(t_parsing *parsing, t_data *data);

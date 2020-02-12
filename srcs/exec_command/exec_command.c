@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/11 16:02:34 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 09:44:13 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void		check_separator(t_data *data)
 	}
 }
 
-int				exec_command(t_data *data)
+void				exec_command(t_data *data)
 {
 	int		ret;
 
@@ -100,14 +100,13 @@ int				exec_command(t_data *data)
 		fork_function((t_parsing*)(data->lst_parsing->content), data);
 		check_separator(data);
 		data->lst_parsing = data->lst_parsing->next;
-		data->ret = exec_command(data);
+		exec_command(data);
 	}
 	else if (ret == 1)
 	{
 		data->lst_parsing = data->lst_parsing->next;
-		data->ret = exec_command(data);
+		exec_command(data);
 	}
 	close(data->mypipefd[0]);
 	close(data->mypipefd[1]);
-	return (data->ret);
 }
