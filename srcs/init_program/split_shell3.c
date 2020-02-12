@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/12 12:52:13 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:17:47 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,75 @@ void			ft_else_split(int *i, char *str, char **tab, t_data *data)
 		ft_chevron(i, str, tab, data);
 	else if (str[*i] == '<' || str[*i] == ';' || str[*i] == '|')
 		ft_other_case(i, str, tab, data);
+}
+
+char			*ft_del_quote2(char *buf, t_data *data)
+{
+	int			i;
+	int			j;
+	int			size;
+	char		*dest;
+	int			quote;
+
+	i = 0;
+	quote = 0;
+	size = ft_strlen(buf);
+	easy_malloc((void**)&dest, sizeof(char) * size, data);
+	while (buf[i])
+	{
+		if (buf[i++] == '"')
+			quote++;
+	}
+	i = 0;
+	j = 0;
+	if (quote > 2 && quote % 2 == 0)
+	{
+		dest[j++] = buf[i++];
+		while (i < size - 1)
+		{
+			if (buf[i] == '"')
+				i++;
+			else
+				dest[j++] = buf[i++];
+		}
+		dest[j] = buf[i];
+	}
+	else
+		dest = ft_strcpy(dest, buf);
+	return (dest);
+}
+
+char			*ft_correctif(char *str, t_data *data)
+{
+	int			i;
+	int			j;
+	int			k;
+	int			size;
+	char		*buf;
+	char		*dest;
+
+	size = ft_strlen(str);
+	easy_malloc((void**)&dest, sizeof(char) * size, data);
+	easy_malloc((void**)&buf, sizeof(char) * size, data);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == '"')
+		{
+			k = 0;
+			buf[k++] = str[i++];
+			while (str[i] && (str[i] != '"' || str[i + 1] != ' '))
+				buf[k++] = str[i++];
+			buf[k] = str[i];
+			ft_printf("buf :%s\n", buf);
+			ft_del_quote2(buf, data);
+			//ft_printf("%s\n", buf);
+			ft_strjoin(dest, buf);
+			i++;
+		}
+		else
+			dest[j++] = str[i++];
+	}
+	return (dest);
 }

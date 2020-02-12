@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 12:51:18 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:14:52 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void				control_env(char **tab, t_data *data);
 void				ft_del_slash(int *i, int *j, char *str, char *buf);
 void				ft_other_case(int *i, char *str, char **tab, t_data *data);
 void				ft_else_split(int *i, char *str, char **tab, t_data *data);
+char				*ft_correctif(char *str, t_data *data);
 
 // garbage collector
 void				garbage_init(t_data *data);

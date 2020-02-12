@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 12:42:37 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:27:24 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ char			**split_shell(char *str, t_data *data)
 	i = 0;
 	easy_malloc((void**)&tab, sizeof(char*) * 256, data);
 	str = ft_del_quote(str, 0, data);
-	//str = ft_del_slash(str, 0, data);
+	ft_printf("%s\n", str);
+	str = ft_correctif(str, data);
+	ft_printf("%s\n", str);
 	while (str[i])
 	{
 		while (str[i] && str[i] == ' ')

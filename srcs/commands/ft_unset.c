@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 17:32:09 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:52:08 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,16 @@ char			**del_env2(int *i, char **env, char *value, t_data *data)
 void			ft_unset(t_parsing *tmp, t_data *data)
 {
 	int			i;
+	int			j;
 
 	i = 0;
-	while (data->env[i])
-		i++;
-	data->env = del_env2(&i, data->env, tmp->arg[1], data);
-	data->ret = 0;
+	j = 1;
+	while (tmp->arg[j])
+	{
+		while (data->env[i])
+			i++;
+		data->env = del_env2(&i, data->env, tmp->arg[j], data);
+		data->ret = 0;
+		j++;
+	}
 }

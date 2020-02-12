@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 12:51:44 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 16:07:17 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void			ft_line_basic(int *i, char *str, char **tab, t_data *data)
 	ft_bzero(buf, 256);
 	j = 0;
 	while (str[*i] && (str[*i] != ' ' && str[*i] != '>'
-		&& str[*i] != '<' && str[*i] != '|' && str[*i] != ';'))
+		&& str[*i] != '<' && str[*i] != '|' && str[*i] != ';'
+		&& str[*i] != '"' && str[*i] != '\''))
 	{
 		ft_del_slash(i, &j, str, buf);
 		buf[j++] = str[*i];
