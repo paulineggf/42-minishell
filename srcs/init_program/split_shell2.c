@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 10:36:42 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 12:51:44 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void			ft_line_basic(int *i, char *str, char **tab, t_data *data)
 	while (str[*i] && (str[*i] != ' ' && str[*i] != '>'
 		&& str[*i] != '<' && str[*i] != '|' && str[*i] != ';'))
 	{
+		ft_del_slash(i, &j, str, buf);
 		buf[j++] = str[*i];
 		*i += 1;
 	}

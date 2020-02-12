@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/12 10:38:04 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/12 12:52:13 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,23 @@ void			control_env(char **tab, t_data *data)
 	}
 }
 
-char			*ft_del_slash(char *str, int j, t_data *data)
+void			ft_del_slash(int *i, int *j, char *str, char *buf)
 {
-	int			i;
 	int			size;
-	char		*dest;
 
-	i = 0;
 	size = ft_strlen(str);
-	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
-	while (str[i])
+	if (str[*i] == '\\')
 	{
-		if (str[i] == '\\')
+		if (*i < size && str[*i + 1] == '\\')
 		{
-			if (i < size && str[i + 1] == '\\')
-			{
-				i += 1;
-				dest[j++] = str[i++];
-			}
-			else
-				i++;
+			*i += 1;
+			buf[*j] = str[*i];
+			*j += 1;
+			*i += 1;
 		}
 		else
-			dest[j++] = str[i++];
+			*i += 1;
 	}
-	return (dest);
 }
 
 void			ft_else_split(int *i, char *str, char **tab, t_data *data)
