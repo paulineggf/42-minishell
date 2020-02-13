@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 18:27:24 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:46:10 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void			ft_error(int flag_double, int flag_simple, t_data *data)
 {
 	if (flag_double == 1)
-		exit_failure("Minishell: Il manque un double chevron.\n", data);
+		exit_failure("Minishell: Il manque une double quote.\n", data);
 	else if (flag_simple == 1)
-		exit_failure("Minishell: Il manque un simple chevron.\n", data);
+		exit_failure("Minishell: Il manque une simple quote.\n", data);
 }
 
 void			ft_other_case(int *i, char *str, char **tab, t_data *data)
@@ -93,9 +93,8 @@ char			**split_shell(char *str, t_data *data)
 	i = 0;
 	easy_malloc((void**)&tab, sizeof(char*) * 256, data);
 	str = ft_del_quote(str, 0, data);
-	ft_printf("%s\n", str);
-	str = ft_correctif(str, data);
-	ft_printf("%s\n", str);
+	str = ft_correctif('"', str, data);
+	str = ft_correctif('\'', str, data);
 	while (str[i])
 	{
 		while (str[i] && str[i] == ' ')
