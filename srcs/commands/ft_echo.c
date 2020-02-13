@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:51:42 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/12 17:44:34 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:47:56 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				ft_echo(t_parsing *parsing, t_data *data)
 	int		i;
 
 	i = 0;
-	if (data->mypipefd[1] != -1)
+	if (data->fd1[1] != -1)
 	{
 		if (parsing->arg[1] != NULL && !ft_strcmp(parsing->arg[1], "-n"))
 			ft_echo_n(parsing, data);

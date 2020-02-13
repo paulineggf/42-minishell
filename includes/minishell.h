@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 17:44:49 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:14:43 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ typedef struct		s_data
 	int				savestdout;
 	int				savestdin;
 	pid_t			pid;
-	int				mypipefd[2];
+	// int				mypipefd[2];
+	int				fd1[2];
+	int				fd2[2];
+	int				pipe2;
 	char			*str_prompt;
 	char			**str_split;
 	t_list			*lst_parsing;
@@ -70,7 +73,7 @@ void				ft_unset(t_parsing *tmp, t_data *data);
 int					ft_env(t_data *data);
 int					ft_pwd(t_data *datas);
 void				ft_cd(t_parsing *parsing, t_data *data);
-void				exec_command(t_data *data);
+void				exec_command(t_data *data, int inputfd, int savestdout);
 int					exec_command_env(t_parsing *tmp, t_data *data);
 int					ft_execve(t_parsing *tmp, t_data *data);
 int					is_builtin(t_parsing *parsing, t_data *data);
