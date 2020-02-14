@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/11 18:42:15 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/14 16:52:17 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS_EXEC_COMMAND = exec_command.c 			\
 					exec_command_env.c 		\
 					left_chevron.c 			\
 					right_chevron.c 		\
-					double_left_chevron.c 
+					double_left_chevron.c 	\
+					pipe_command.c 
 
 SRCS_COMMANDS =		ft_echo.c				\
 					ft_export.c 			\
@@ -53,7 +54,7 @@ NAME =	minishell
 LIB = libft/libft.a
 RM = rm -f
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -MMD -I $(HEADERS0) -I $(HEADERS1) -Ofast
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 -MMD -I $(HEADERS0) -I $(HEADERS1) -Ofast
 DPDCS = $(SRCS0:.c=.d) $(SRCS1:.c=.d) $(SRCS2:.c=.d)
 
 all: $(NAME)

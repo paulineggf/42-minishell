@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:22:00 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/13 15:44:11 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:51:46 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void		right_chevron(t_list **tmp, t_data *data)
 				*tmp = (*tmp)->next;
 		}
 		else
-			dup2(data->fd1[1], STDIN_FILENO);
+			dup2(data->fd0[1], STDIN_FILENO);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:24:33 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/13 15:43:53 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:51:52 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void		double_left_chevron(t_list **tmp, t_data *data)
 			add_arg2(((t_parsing*)(data->lst_parsing->content))->arg,
 			((t_parsing*)((*tmp)->content))->arg, data);
 	}
-	dup2(data->fd1[1], STDOUT_FILENO);
+	dup2(data->fd0[1], STDOUT_FILENO);
 }
