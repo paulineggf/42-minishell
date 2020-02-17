@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 19:19:39 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:27:05 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 
 static void		avance_command(t_list **lst)
 {
-	while (*lst != NULL && ((t_parsing*)(*lst)->content)->semicolon != 1)
+	while (*lst != NULL && ((t_parsing*)(*lst)->content)->semicolon != 1
+	&& ((t_parsing*)(*lst)->content)->pipe != 1)
 		*lst = (*lst)->next;
 	*lst = (*lst)->next;
 }
