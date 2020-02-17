@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:22:50 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/12 16:03:52 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:25:40 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 static int			is_separator(char **str, int i, t_parsing *struct_parsing)
 {
 	if (!str[i])
+	{
+		struct_parsing->semicolon = 1;
 		return (1);
+	}
 	else if (!ft_strcmp(str[i], PIPE))
 		struct_parsing->pipe = 1;
 	else if (!ft_strcmp(str[i], SEMICOLON))

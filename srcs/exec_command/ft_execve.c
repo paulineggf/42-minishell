@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 17:45:41 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:20:47 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static void		ft_execve2(char *path, char **path_tab,
 		if (execve(path_tab[i], tmp->arg, data->env) == -1)
 			i++;
 	}
+	exit_failure(NULL, data);
+
 }
 
 int				ft_execve(t_parsing *tmp, t_data *data)
@@ -90,6 +92,7 @@ int				ft_execve(t_parsing *tmp, t_data *data)
 	{
 		if (execve(tmp->arg[0], tmp->arg, data->env) == -1)
 			return (0);
+		exit_failure(NULL, data);
 	}
 	else
 		ft_execve2(path, path_tab, tmp, data);

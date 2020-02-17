@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+         #
+#    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/17 11:11:57 by mcraipea         ###   ########.fr        #
+#    Updated: 2020/02/17 15:44:17 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRCS_EXEC_COMMAND = exec_command.c 			\
 					exec_command_env.c 		\
 					left_chevron.c 			\
 					right_chevron.c 		\
-					double_left_chevron.c 
+					double_left_chevron.c 	\
+					pipe_command.c 
 
 SRCS_COMMANDS =		ft_echo.c				\
 					ft_export.c 			\
