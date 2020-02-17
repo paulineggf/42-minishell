@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:24:28 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 13:41:34 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:40:30 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void		check_separator(t_list **lst, t_data *data)
 {
-
 	t_list	*tmp;
 
 	tmp = *lst;
@@ -26,36 +25,10 @@ static void		check_separator(t_list **lst, t_data *data)
 			right_chevron(&tmp, data);
 		else if (((t_parsing*)(tmp->content))->ld_chevron)
 			double_left_chevron(&tmp, data);
-		else if (((t_parsing*)(tmp->content))->pipe)
-			pipe_command(tmp->content, &tmp, data);
 		else
 			break ;
 	}
 	close(data->fd0[1]);	
-	// t_list		*tmp;
-	// t_parsing 	*content;
-
-	// tmp = *lst;
-	// while (1)
-	// {
-	// 	if (tmp)
-	// 	{
-	// 		content = tmp->content;
-	// 		if (content->pipe)
-	// 			pipe_command(content, &tmp, data);
-	// 		else if (content->l_chevron)
-	// 			left_chevron(&tmp, data);
-	// 		else if (content->r_chevron)
-	// 			right_chevron(&tmp, data);
-	// 		else if (content->ld_chevron)
-	// 			double_left_chevron(&tmp, data);
-	// 		else
-	// 			break ;
-	// 	}
-	// 	else
-	// 		break ;
-	// }
-	// close(data->fd0[1]);
 }
 
 static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
@@ -68,11 +41,11 @@ static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 		data->savestdout = dup(STDOUT_FILENO);
 		if (tmp->l_chevron || tmp->pipe || tmp->r_chevron || tmp->ld_chevron)
 			check_separator(lst, data);
-		if (*lst && is_builtin(tmp, data) == 0)
+		if (is_builtin(tmp, data) == 0)
 			if (ft_execve(tmp, data) == 0)
 			{
 				ft_putstr_fd("popo & max: ", 2);
-				ft_putstr_fd(((t_parsing*)((*lst)->content))->arg[0], 2);
+				ft_putstr_fd(tmp->arg[0], 2);
 				ft_putstr_fd(": command not found\n", 2);
 				exit((data->ret = 127));
 			}
@@ -84,21 +57,13 @@ static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 		waitpid(data->pid, &data->status, 0);
 		data->ret = WEXITSTATUS(data->status);
 	}
-	close(data->fd0[0]);
-	close(data->fd0[1]);
 }
 
-static void		avance_command(t_list **lst, t_data *data)
+static void		avance_command(t_list **lst)
 {
 	while (*lst != NULL && ((t_parsing*)(*lst)->content)->semicolon != 1)
 		*lst = (*lst)->next;
 	*lst = (*lst)->next;
-	if (*lst)
-	{
-		printf("arg[0] : %s\n", ((t_parsing*)(*lst)->content)->arg[0]);
-		printf("semicolon : %d\n", ((t_parsing*)(*lst)->content)->semicolon);
-	}
-	data->lst_parsing = *lst;
 }
 
 void			exec_command(t_list **lst, t_data *data)
@@ -111,9 +76,14 @@ void			exec_command(t_list **lst, t_data *data)
 	{
 		ret = exec_command_env((*lst)->content, data);
 		if (ret == 0)
-			fork_function((*lst)->content, lst, data);
+		{
+			if (((t_parsing*)(*lst)->content)->pipe)
+				pipe_command((*lst)->content, lst, data);
+			else
+				fork_function((*lst)->content, lst, data);
+		}
 		if (*lst)
-			avance_command(lst, data);
+			avance_command(lst);
 		exec_command(lst, data);
 	}
 	close(data->fd0[0]);
