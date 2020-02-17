@@ -6,39 +6,47 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 16:26:42 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:09:10 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char			**del_env2(int *i, char **env, char *value, t_data *data)
+char			**del_env3(char *value, int size, int *i, t_data *data)
+{
+	char	**new;
+	int		j;
+	int		k;
+
+	j = 0;
+	if (!(new = ft_calloc(*i, sizeof(char*))))
+		exit_failure("malloc", data);
+	k = 0;
+	while (data->env[j])
+	{
+		if (ft_strncmp(data->env[j], value, size) != 0)
+			if (!(new[k++] = ft_strdup(data->env[j])))
+				exit_failure("ft_strdup", data);
+		free(data->env[j]);
+		j++;
+	}
+	free(data->env);
+	return (new);
+}
+
+char			**del_env2(int *i, char *value, t_data *data)
 {
 	int			j;
-	int			k;
 	int			size;
-	char		**new;
 
 	j = -1;
 	size = ft_strlen(value);
-	while (env[++j])
+	while (data->env[++j])
 	{
-		if (ft_strncmp(env[j], value, size) == 0 && (j = -1))
-		{
-			if (!(new = ft_calloc(*i, sizeof(char*))))
-				exit_failure("malloc", data);
-			k = 0;
-			while (env[++j])
-			{
-				if (ft_strncmp(env[j], value, size) != 0)
-					if (!(new[k++] = ft_strdup(env[j])))
-						exit_failure("ft_strdup", data);
-				free(env[j]);
-			}
-			return (new);
-		}
+		if (ft_strncmp(data->env[j], value, size) == 0)
+			return (del_env3(value, size, i, data));
 	}
-	return (env);
+	return (data->env);
 }
 
 void			ft_unset(t_parsing *tmp, t_data *data)
@@ -52,7 +60,7 @@ void			ft_unset(t_parsing *tmp, t_data *data)
 	{
 		while (data->env[i])
 			i++;
-		data->env = del_env2(&i, data->env, tmp->arg[j], data);
+		data->env = del_env2(&i, tmp->arg[j], data);
 		i--;
 		data->ret = 0;
 		j++;

@@ -6,7 +6,7 @@
 #    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/17 15:44:17 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/17 16:42:11 by pganglof         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ NAME =	minishell
 LIB = libft/libft.a
 RM = rm -f
 CC = gcc
-CFLAGS = -fsanitize=address -Wall -Wextra -Werror -g3 -MMD -I $(HEADERS0) -I $(HEADERS1) -Ofast
+CFLAGS = -Wall -Wextra -Werror -g3 -MMD -I $(HEADERS0) -I $(HEADERS1) -Ofast
 DPDCS = $(SRCS0:.c=.d) $(SRCS1:.c=.d) $(SRCS2:.c=.d)
 
 all: $(NAME)

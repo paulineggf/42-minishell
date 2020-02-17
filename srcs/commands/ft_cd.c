@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/11 18:28:44 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:10:07 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
 		i++;
 	chdir(path);
 	getcwd(repertoire, 4096);
-	data->env = del_env2(&i, data->env, "PWD=", data);
+	data->env = del_env2(&i, "PWD=", data);
 	path = ft_strjoin("PWD=", repertoire);
 	data->env = add_env(&i, data->env, path, data);
 	if (p_dir != NULL)

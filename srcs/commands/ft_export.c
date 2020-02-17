@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 15:58:56 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:09:27 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ char		**add_env(int *i, char **env, char *value, t_data *data)
 	j++;
 	new[j] = NULL;
 	j = 0;
-	while (j < *i)
+	while (j < *i + 1)
 		free(env[j++]);
+	free(env);
 	return (new);
 }
 
@@ -80,7 +81,7 @@ void		ft_export(t_parsing *tmp, t_data *data)
 			buffer[i] = tmp->arg[j][i];
 			buffer[i] = '\0';
 			i = ft_size_env(data);
-			data->env = del_env2(&i, data->env, buffer, data);
+			data->env = del_env2(&i, buffer, data);
 			i = ft_size_env(data);
 			data->env = add_env(&i, data->env, tmp->arg[j], data);
 			data->ret = 0;
