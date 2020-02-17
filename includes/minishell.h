@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 12:43:49 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:09:41 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_data
 	char			**env;
 	int				inputfd;
 	int				ret;
+	int				verif_path;
 	int				status;
 	int				savestdout;
 	int				savestdin;
@@ -83,7 +84,7 @@ char				**add_arg2(char **tmp1, char **tmp2, t_data *data);
 char				**ft_init_env(char **env, t_data *data);
 char				**split_shell(char *str, t_data *data);
 void				ft_new_line(char *buf, char **tab, t_data *data);
-int					ft_simple_quote(int *i, char *str,
+void				ft_simple_quote(int *i, char *str,
 					char **tab, t_data *data);
 void				ft_double_quote(int *i, char *str,
 					char **tab, t_data *data);

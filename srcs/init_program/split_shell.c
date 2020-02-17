@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 12:44:09 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:12:17 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,8 @@ char			**split_shell(char *str, t_data *data)
 {
 	int			i;
 	char		**tab;
-	int			ret;
 
 	i = 0;
-	ret = 0;
 	easy_malloc((void**)&tab, sizeof(char*) * 256, data);
 	str = ft_del_quote(str, 0, data);
 	str = ft_correctif('\'', str, data);
@@ -104,11 +102,11 @@ char			**split_shell(char *str, t_data *data)
 		if (str[i] == '"')
 			ft_double_quote(&i, str, tab, data);
 		else if (str[i] == '\'')
-			ret = ft_simple_quote(&i, str, tab, data);
+			ft_simple_quote(&i, str, tab, data);
 		else
 			ft_else_split(&i, str, tab, data);
 	}
-	if (ret == 0)
+	if (data->verif_path != 42)
 		control_env(tab, data);
 	return (tab);
 }

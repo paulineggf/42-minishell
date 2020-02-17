@@ -6,13 +6,13 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:10:32 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 11:11:37 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:14:46 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		    ft_delallchar(char *str, char *c)
+void			ft_delallchar(char *str, char *c)
 {
 	while ((str = strpbrk(str, c)) != NULL)
 	{

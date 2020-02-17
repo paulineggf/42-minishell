@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 12:42:28 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:09:25 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ void			ft_new_line(char *buf, char **tab, t_data *data)
 	tab[i][j] = '\0';
 }
 
-int			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
+void			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
 {
 	int			j;
 	char		buf[256];
 
 	ft_bzero(buf, 256);
 	j = 0;
+	if (str[*i + 1] == '$')
+		data->verif_path = 42;
 	*i += 1;
 	while (str[*i] && str[*i] != '\'')
 	{
@@ -52,7 +54,6 @@ int			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
 	}
 	else
 		ft_error(0, 1, data);
-	return (1);
 }
 
 void			ft_double_quote(int *i, char *str, char **tab, t_data *data)
