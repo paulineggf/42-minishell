@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 13:49:33 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:34:36 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,27 @@ static char		*ft_new_str(int *k, char *env, t_data *data)
 	return (new);
 }
 
-void			control_env(char **tab, t_data *data)
+char			*control_env(char *tab, t_data *data)
 {
-	int		i;
 	int		j;
 	int		k;
 	int		size;
 
-	i = -1;
 	k = 0;
-	while (tab[++i])
+	j = -1;
+	if (tab[0] == '$' && tab[1] != '?' && tab[1] != '\0')
 	{
-		j = -1;
-		if (tab[i][0] == '$' && tab[i][1] != '?')
+		size = ft_strlen(tab) - 1;
+		while (data->env[++j])
 		{
-			size = ft_strlen(&tab[i][1]);
-			while (data->env[++j])
-			{
-				if (!ft_strncmp(&tab[i][1], data->env[j], size)
-				&& data->env[j][size] == '=')
-					tab[i] = ft_new_str(&k, data->env[j], data);
-			}
-			if (k == 0)
-				tab[i][0] = '\0';
+			if (!ft_strncmp(&tab[1], data->env[j], size)
+			&& data->env[j][size] == '=')
+				tab = ft_new_str(&k, data->env[j], data);
 		}
+		if (k == 0)
+			tab[0] = '\0';
 	}
+	return (tab);
 }
 
 void			ft_del_slash(int *i, int *j, char *str, char *buf)

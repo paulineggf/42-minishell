@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:51:42 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 15:43:16 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:57:01 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ static void		ft_echo_n(t_parsing *parsing, t_data *data)
 	int		i;
 
 	i = 1;
-	(void)data;
-	while (parsing->arg[++i + 1])
+	if (parsing->arg[2])
 	{
+		while (parsing->arg[++i + 1])
+		{
+			if (!ft_strcmp(parsing->arg[i], "$?"))
+				ft_printf("%d ", data->ret);
+			else
+				ft_printf("%s ", parsing->arg[i]);
+		}
 		if (!ft_strcmp(parsing->arg[i], "$?"))
-			ft_printf("%d ", data->ret);
+			ft_printf("%d", data->ret);
 		else
-			ft_printf("%s ", parsing->arg[i]);
+			ft_putstr_fd(parsing->arg[i], 1);
 	}
-	if (!ft_strcmp(parsing->arg[i], "$?"))
-		ft_printf("%d", data->ret);
-	else
-		ft_putstr_fd(parsing->arg[i], 1);
 }
 
 static void		ft_echo2(t_parsing *parsing, t_data *data)
@@ -36,7 +38,6 @@ static void		ft_echo2(t_parsing *parsing, t_data *data)
 	int		i;
 
 	i = 1;
-	(void)data;
 	while (parsing->arg[i + 1])
 	{
 		if (!ft_strcmp(parsing->arg[i], "$?"))

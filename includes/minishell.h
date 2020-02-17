@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 15:43:34 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:19:03 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void				ft_double_quote(int *i, char *str,
 void				ft_line_basic(int *i, char *str, char **tab, t_data *data);
 void				ft_chevron(int *i, char *str, char **tab, t_data *data);
 void				ft_error(int flag_double, int flag_simple, t_data *data);
-void				control_env(char **tab, t_data *data);
+char				*control_env(char *tab, t_data *data);
 void				ft_del_slash(int *i, int *j, char *str, char *buf);
 void				ft_other_case(int *i, char *str, char **tab, t_data *data);
 void				ft_else_split(int *i, char *str, char **tab, t_data *data);

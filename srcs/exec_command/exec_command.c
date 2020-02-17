@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 15:43:22 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:39:06 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		check_separator(t_list **lst, t_data *data)
 		else
 			break ;
 	}
-	close(data->fd0[1]);	
+	close(data->fd0[1]);
 }
 
 static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
@@ -51,7 +51,7 @@ static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 			}
 	}
 	else if (data->pid < 0)
-		exit_failure("fork", data);	
+		exit_failure("fork", data);
 	else
 	{
 		waitpid(data->pid, &data->status, 0);
@@ -70,7 +70,7 @@ void			exec_command(t_list **lst, t_data *data)
 {
 	int		ret;
 
-	ret = 0;	
+	ret = 0;
 	pipe(data->fd0);
 	if (*lst != NULL)
 	{

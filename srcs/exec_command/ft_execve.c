@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/13 18:20:47 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:38:44 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void		ft_execve2(char *path, char **path_tab,
 			i++;
 	}
 	exit_failure(NULL, data);
-
 }
 
 int				ft_execve(t_parsing *tmp, t_data *data)

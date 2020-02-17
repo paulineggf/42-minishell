@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:24:45 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 15:40:45 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:39:25 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,15 @@ static void		pipe_command4(t_parsing *tmp, t_data *data)
 		if (data->pipe2 > 0)
 		{
 			dup2(data->fd2[0], STDIN_FILENO);
-			close(data->fd1[1]);
 			close(data->fd1[0]);
-			close(data->fd2[1]);
 		}
 		else
 		{
 			dup2(data->fd1[0], STDIN_FILENO);
-			close(data->fd1[1]);
 			close(data->fd2[0]);
-			close(data->fd2[1]);
 		}
+		close(data->fd1[1]);
+		close(data->fd2[1]);
 		if (is_builtin(tmp, data) == 0)
 			if (ft_execve(tmp, data) == 0)
 			{
@@ -92,15 +90,15 @@ static void		pipe_command4(t_parsing *tmp, t_data *data)
 	}
 }
 
-void		pipe_command(t_parsing *tmp, t_list **lst, t_data *data)
+void			pipe_command(t_parsing *tmp, t_list **lst, t_data *data)
 {
 	data->pipe2 = 0;
 	pipe(data->fd1);
 	pipe(data->fd2);
 	pipe_command2(tmp, lst, data);
-	tmp = (*lst)->content;	
+	tmp = (*lst)->content;
 	pipe_command3(tmp, lst, data);
-	tmp = (*lst)->content;	
+	tmp = (*lst)->content;
 	pipe_command4(tmp, data);
 	data->lst_parsing = *lst;
 	close(data->fd1[0]);
@@ -108,7 +106,7 @@ void		pipe_command(t_parsing *tmp, t_list **lst, t_data *data)
 	close(data->fd2[0]);
 	close(data->fd2[1]);
 	waitpid(-1, &data->status, 0);
-	waitpid(-1, &data->status, 0);	
+	waitpid(-1, &data->status, 0);
 	waitpid(-1, &data->status, 0);
 	data->ret = WEXITSTATUS(data->status);
 }

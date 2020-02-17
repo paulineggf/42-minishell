@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 13:12:17 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:23:24 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,5 @@ char			**split_shell(char *str, t_data *data)
 		else
 			ft_else_split(&i, str, tab, data);
 	}
-	if (data->verif_path != 42)
-		control_env(tab, data);
 	return (tab);
 }

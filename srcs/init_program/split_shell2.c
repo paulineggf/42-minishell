@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 13:09:25 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:21:27 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
 void			ft_double_quote(int *i, char *str, char **tab, t_data *data)
 {
 	int			j;
-	char		buf[256];
+	char		*buf;
 
-	ft_bzero(buf, 256);
+	easy_malloc((void**)&buf, sizeof(char) * 256, data);
 	j = 0;
 	*i += 1;
 	while (str[*i] && str[*i] != '"')
@@ -72,6 +72,7 @@ void			ft_double_quote(int *i, char *str, char **tab, t_data *data)
 	if (str[*i] == '"')
 	{
 		*i += 1;
+		buf = control_env(buf, data);
 		ft_new_line(buf, tab, data);
 	}
 	else
@@ -81,9 +82,9 @@ void			ft_double_quote(int *i, char *str, char **tab, t_data *data)
 void			ft_line_basic(int *i, char *str, char **tab, t_data *data)
 {
 	int			j;
-	char		buf[256];
+	char		*buf;
 
-	ft_bzero(buf, 256);
+	easy_malloc((void**)&buf, sizeof(char) * 256, data);
 	j = 0;
 	while (str[*i] && (str[*i] != ' ' && str[*i] != '>'
 		&& str[*i] != '<' && str[*i] != '|' && str[*i] != ';'
@@ -93,6 +94,7 @@ void			ft_line_basic(int *i, char *str, char **tab, t_data *data)
 		buf[j++] = str[*i];
 		*i += 1;
 	}
+	buf = control_env(buf, data);
 	ft_new_line(buf, tab, data);
 	while (str[*i] && str[*i] == ' ')
 		*i += 1;
