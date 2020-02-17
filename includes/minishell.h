@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 18:32:38 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:19:45 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int					is_builtin(t_parsing *parsing, t_data *data);
 void				pipe_command(t_parsing *tmp, t_list **lst, t_data *data);
 void				left_chevron(t_list **tmp, t_data *data);
 void				right_chevron(t_list **tmp, t_data *data);
+int					check_separator(t_list **lst, t_data *data);
 void				double_left_chevron(t_list **tmp, t_data *data);
 t_list				*parsing_command(char *line, t_data *data);
 int					len_tabtab(char **str);

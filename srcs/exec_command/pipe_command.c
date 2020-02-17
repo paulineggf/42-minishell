@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:24:45 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 16:39:25 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:20:32 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void		pipe_command3(t_parsing *tmp, t_list **lst, t_data *data)
 	}
 }
 
-static void		pipe_command4(t_parsing *tmp, t_data *data)
+static void		pipe_command4(t_parsing *tmp, t_list **lst, t_data *data)
 {
 	data->pid = fork();
 	minishell_signals2();
@@ -79,7 +79,7 @@ static void		pipe_command4(t_parsing *tmp, t_data *data)
 		}
 		close(data->fd1[1]);
 		close(data->fd2[1]);
-		if (is_builtin(tmp, data) == 0)
+		if (check_separator(lst, data) && is_builtin(tmp, data) == 0)
 			if (ft_execve(tmp, data) == 0)
 			{
 				ft_putstr_fd("popo & max: ", 2);
@@ -99,7 +99,7 @@ void			pipe_command(t_parsing *tmp, t_list **lst, t_data *data)
 	tmp = (*lst)->content;
 	pipe_command3(tmp, lst, data);
 	tmp = (*lst)->content;
-	pipe_command4(tmp, data);
+	pipe_command4(tmp, lst, data);
 	data->lst_parsing = *lst;
 	close(data->fd1[0]);
 	close(data->fd1[1]);

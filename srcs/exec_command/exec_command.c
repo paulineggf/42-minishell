@@ -6,13 +6,13 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 16:39:06 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:19:39 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void		check_separator(t_list **lst, t_data *data)
+int		check_separator(t_list **lst, t_data *data)
 {
 	t_list	*tmp;
 
@@ -29,6 +29,7 @@ static void		check_separator(t_list **lst, t_data *data)
 			break ;
 	}
 	close(data->fd0[1]);
+	return (1);
 }
 
 static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
@@ -39,7 +40,7 @@ static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 	{
 		data->savestdin = dup(STDIN_FILENO);
 		data->savestdout = dup(STDOUT_FILENO);
-		if (tmp->l_chevron || tmp->pipe || tmp->r_chevron || tmp->ld_chevron)
+		if (tmp->l_chevron || tmp->r_chevron || tmp->ld_chevron)
 			check_separator(lst, data);
 		if (is_builtin(tmp, data) == 0)
 			if (ft_execve(tmp, data) == 0)
