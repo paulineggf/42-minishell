@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 18:44:18 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:47:55 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	ft_size_env(t_data *data)
 	return (i);
 }
 
-char			**del_env22(int *i, char *value, t_data *data)
+char		**del_env22(int *i, char *value, t_data *data)
 {
 	int			j;
 	int			size;
