@@ -6,18 +6,19 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 12:42:34 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:49:33 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char		*ft_new_str(char *env, t_data *data)
+static char		*ft_new_str(int *k, char *env, t_data *data)
 {
 	int		i;
 	char	*new;
 
 	i = 0;
+	*k += 1;
 	while (env[i] != '=')
 		i++;
 	i++;
@@ -31,9 +32,11 @@ void			control_env(char **tab, t_data *data)
 {
 	int		i;
 	int		j;
+	int		k;
 	int		size;
 
 	i = -1;
+	k = 0;
 	while (tab[++i])
 	{
 		j = -1;
@@ -44,12 +47,9 @@ void			control_env(char **tab, t_data *data)
 			{
 				if (!ft_strncmp(&tab[i][1], data->env[j], size)
 				&& data->env[j][size] == '=')
-				{
-					tab[i] = ft_new_str(data->env[j], data);
-					return ;
-				}
+					tab[i] = ft_new_str(&k, data->env[j], data);
 			}
-			if (data->env[j] == NULL)
+			if (k == 0)
 				tab[i][0] = '\0';
 		}
 	}
