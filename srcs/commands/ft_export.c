@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 17:09:27 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:44:18 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,21 @@ static int	ft_size_env(t_data *data)
 	return (i);
 }
 
+char			**del_env22(int *i, char *value, t_data *data)
+{
+	int			j;
+	int			size;
+
+	j = -1;
+	size = ft_strlen(value);
+	while (data->env[++j])
+	{
+		if (ft_strncmp(data->env[j], value, size) == 0)
+			return (del_env3(value, size, i, data));
+	}
+	return (data->env);
+}
+
 void		ft_export(t_parsing *tmp, t_data *data)
 {
 	int			i;
@@ -79,9 +94,9 @@ void		ft_export(t_parsing *tmp, t_data *data)
 				i++;
 			}
 			buffer[i] = tmp->arg[j][i];
-			buffer[i] = '\0';
+			buffer[++i] = '\0';
 			i = ft_size_env(data);
-			data->env = del_env2(&i, buffer, data);
+			data->env = del_env22(&i, buffer, data);
 			i = ft_size_env(data);
 			data->env = add_env(&i, data->env, tmp->arg[j], data);
 			data->ret = 0;

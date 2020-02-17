@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 17:09:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:32:38 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void				ft_export(t_parsing *tmp, t_data *data);
 char				**add_env(int *i, char **env,
 					char *value, t_data *data);
 char				**del_env2(int *i, char *value, t_data *data);
+char				**del_env3(char *value, int size, int *i, t_data *data);
 void				ft_unset(t_parsing *tmp, t_data *data);
 int					ft_env(t_data *data);
 int					ft_pwd(t_data *datas);
