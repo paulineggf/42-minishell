@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:24:45 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/14 15:51:01 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:55:28 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void		pipe_command(t_parsing *tmp, t_list **lst, t_data *data)
 	pipe_command3(tmp, lst, data);
 	tmp = (*lst)->content;	
 	pipe_command4(tmp, lst, data);
+	data->lst_parsing = *lst;
 	close(data->fd1[0]);
 	close(data->fd1[1]);
 	close(data->fd2[0]);
@@ -110,5 +111,5 @@ void		pipe_command(t_parsing *tmp, t_list **lst, t_data *data)
 	waitpid(-1, &data->status, 0);
 	waitpid(-1, &data->status, 0);	
 	waitpid(-1, &data->status, 0);
-	data->ret = WEXITSTATUS(data->status);	
+	data->ret = WEXITSTATUS(data->status);
 }
