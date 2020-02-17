@@ -6,13 +6,13 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 19:27:05 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:28:30 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		check_separator(t_list **lst, t_data *data)
+int					check_separator(t_list **lst, t_data *data)
 {
 	t_list	*tmp;
 
@@ -32,7 +32,7 @@ int		check_separator(t_list **lst, t_data *data)
 	return (1);
 }
 
-static void		fork_function(t_parsing *tmp, t_list **lst, t_data *data)
+static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 {
 	data->pid = fork();
 	minishell_signals2();
