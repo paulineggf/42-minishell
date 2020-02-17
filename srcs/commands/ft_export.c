@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 11:44:18 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:58:56 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,41 @@ static int	verif_arg(char *str)
 	return (0);
 }
 
+static int	ft_size_env(t_data *data)
+{
+	int			i;
+
+	i = 0;
+	while (data->env[i])
+		i++;
+	return (i);
+}
+
 void		ft_export(t_parsing *tmp, t_data *data)
 {
 	int			i;
+	int			j;
 	char		buffer[128];
 
-	i = 0;
-	if (verif_arg(tmp->arg[1]) == 1)
+	j = 1;
+	while (tmp->arg[j])
 	{
-		while (tmp->arg[1][i] != '=')
+		i = 0;
+		if (verif_arg(tmp->arg[j]) == 1)
 		{
-			buffer[i] = tmp->arg[1][i];
-			i++;
+			while (tmp->arg[j][i] != '=')
+			{
+				buffer[i] = tmp->arg[j][i];
+				i++;
+			}
+			buffer[i] = tmp->arg[j][i];
+			buffer[i] = '\0';
+			i = ft_size_env(data);
+			data->env = del_env2(&i, data->env, buffer, data);
+			i = ft_size_env(data);
+			data->env = add_env(&i, data->env, tmp->arg[j], data);
+			data->ret = 0;
 		}
-		buffer[i] = tmp->arg[1][i];
-		buffer[i] = '\0';
-		i = 0;
-		while (data->env[i])
-			i++;
-		data->env = del_env2(&i, data->env, buffer, data);
-		i = 0;
-		while (data->env[i])
-			i++;
-		data->env = add_env(&i, data->env, tmp->arg[1], data);
-		data->ret = 0;
+		j++;
 	}
 }

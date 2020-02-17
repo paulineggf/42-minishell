@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 17:44:49 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:43:49 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void				control_env(char **tab, t_data *data);
 void				ft_del_slash(int *i, int *j, char *str, char *buf);
 void				ft_other_case(int *i, char *str, char **tab, t_data *data);
 void				ft_else_split(int *i, char *str, char **tab, t_data *data);
+char				*ft_correctif(char c, char *str, t_data *data);
 void				garbage_init(t_data *data);
 void				add_garbage(void **content, t_data *data);
 void				easy_malloc(void **content, size_t n, t_data *data);
