@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 14:15:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 18:41:44 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:53:46 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char			**del_env2(int *i, char *value, t_data *data)
 		k = 0;
 		while (data->env[j][k] != '=')
 			k++;
+		k = k > size ? k : size;
 		if (ft_strncmp(data->env[j], value, k) == 0)
 			return (del_env3(value, k, i, data));
 	}
