@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:49:58 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 15:44:32 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:28:43 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	main_function(t_data *data)
 		if (ret == -1)
 			exit_failure("get_next_line", data);
 		if (ret == 0)
-			exit_failure2(data);
+			exit_failure2(0, data);
 		add_garbage((void**)&line, data);
-		if (ft_strcmp(line, "exit") == 0)
-			exit_failure2(data);
 		data->lst_parsing = NULL;
 		data->lst_parsing = parsing_command(line, data);
 		exec_command(&data->lst_parsing, data);

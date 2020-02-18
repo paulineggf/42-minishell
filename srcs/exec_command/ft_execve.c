@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/18 13:05:07 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:44:43 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static void		ft_execve2(char *path, char **path_tab,
 		if (execve(path_tab[i], tmp->arg, data->env) == -1)
 			i++;
 	}
-	exit_failure(NULL, data);
 }
 
 int				ft_execve(t_parsing *tmp, t_data *data)

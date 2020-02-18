@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/18 15:17:04 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:42:49 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 		if (tmp->l_chevron || tmp->r_chevron || tmp->ld_chevron)
 			check_separator(lst, data);
 		if (is_builtin(tmp, data) == 0)
+		{
 			if (ft_execve(tmp, data) == 0)
 			{
 				ft_putstr_fd("popo & max: ", 2);
@@ -50,6 +51,7 @@ static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 				ft_putstr_fd(": command not found\n", 2);
 				exit((data->ret = 127));
 			}
+		}
 	}
 	else if (data->pid < 0)
 		exit_failure("fork", data);

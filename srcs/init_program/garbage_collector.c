@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 12:42:48 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:27:23 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		exit_failure(char *str, t_data *data)
 	main_function(data);
 }
 
-void		exit_failure2(t_data *data)
+void		exit_failure2(int ret, t_data *data)
 {
 	int			i;
 
@@ -61,5 +61,5 @@ void		exit_failure2(t_data *data)
 	}
 	free(data);
 	ft_putstr_fd("exit\n", 2);
-	exit(0);
+	exit(ret);
 }

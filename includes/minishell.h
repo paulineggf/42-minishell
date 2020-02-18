@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/18 13:49:00 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/18 16:30:03 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void				ft_unset(t_parsing *tmp, t_data *data);
 int					ft_env(t_data *data);
 int					ft_pwd(t_data *datas);
 void				ft_cd(t_parsing *parsing, t_data *data);
+int					ft_exit(t_parsing *tmp, t_data *data);
 void				exec_command(t_list **lst, t_data *data);
 int					exec_command_env(t_parsing *tmp, t_data *data);
 int					ft_execve(t_parsing *tmp, t_data *data);
@@ -104,7 +105,7 @@ void				garbage_init(t_data *data);
 void				add_garbage(void **content, t_data *data);
 void				easy_malloc(void **content, size_t n, t_data *data);
 void				exit_failure(char *str, t_data *data);
-void				exit_failure2(t_data *data);
+void				exit_failure2(int ret, t_data *data);
 char				*ft_prompt(t_data *data);
 int					main(int argc, char **argv, char **env);
 void				main_function(t_data *data);
