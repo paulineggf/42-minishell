@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 19:28:30 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/18 12:53:02 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 	}
 }
 
-static void		avance_command(t_list **lst)
+static void			avance_command(t_list **lst)
 {
 	while (*lst != NULL && ((t_parsing*)(*lst)->content)->semicolon != 1
 	&& ((t_parsing*)(*lst)->content)->pipe != 1)
@@ -68,7 +68,7 @@ static void		avance_command(t_list **lst)
 	*lst = (*lst)->next;
 }
 
-void			exec_command(t_list **lst, t_data *data)
+void				exec_command(t_list **lst, t_data *data)
 {
 	int		ret;
 
