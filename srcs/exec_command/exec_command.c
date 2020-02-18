@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/18 12:53:02 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:07:00 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 		waitpid(data->pid, &data->status, 0);
 		data->ret = WEXITSTATUS(data->status);
 	}
+	minishell_signals();
 }
 
 static void			avance_command(t_list **lst)
