@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:22:50 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 14:25:40 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:23:04 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,31 @@ static t_parsing	*fill_arg(int *i, t_data *data)
 	return (struct_parsing);
 }
 
+static void			verif_last_sep(char **tab, t_data *data)
+{
+	int			i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	if (i >= 1)
+	{
+		i--;
+		if (!ft_strcmp(tab[i], PIPE))
+			exit_failure(
+			"popo & max: syntax error near unexpected token `|'\n", data);
+		else if (!ft_strcmp(tab[i], R_CHEVRON))
+			exit_failure(
+			"popo & max: syntax error near unexpected token `newline'\n", data);
+		else if (!ft_strcmp(tab[i], L_CHEVRON))
+			exit_failure(
+			"popo & max: syntax error near unexpected token `newline'\n", data);
+		else if (!ft_strcmp(tab[i], LD_CHEVRON))
+			exit_failure(
+			"popo & max: syntax error near unexpected token `newline'\n", data);
+	}
+}
+
 t_list				*parsing_command(char *line, t_data *data)
 {
 	int			i;
@@ -84,6 +109,7 @@ t_list				*parsing_command(char *line, t_data *data)
 	i = 0;
 	begin_list = NULL;
 	data->str_split = split_shell(line, data);
+	verif_last_sep(data->str_split, data);
 	while (data->str_split[i])
 	{
 		struct_parsing = fill_arg(&i, data);

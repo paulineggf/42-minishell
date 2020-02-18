@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+         #
+#    By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/12 14:21:06 by mcraipea          #+#    #+#              #
-#    Updated: 2020/02/17 19:07:25 by pganglof         ###   ########.fr        #
+#    Updated: 2020/02/18 14:42:15 by mcraipea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ NAME =	minishell
 LIB = libft/libft.a
 RM = rm -f
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -MMD -I $(HEADERS0) -I $(HEADERS1) -Ofast
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 -MMD -I $(HEADERS0) -I $(HEADERS1) -Ofast
 DPDCS = $(SRCS0:.c=.d) $(SRCS1:.c=.d) $(SRCS2:.c=.d)
 
 all: $(NAME)

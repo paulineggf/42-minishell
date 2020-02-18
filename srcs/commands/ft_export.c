@@ -6,13 +6,13 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 14:35:27 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 18:47:55 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:54:22 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char		**add_env(int *i, char **env, char *value, t_data *data)
+char		**add_env(int *i, char *value, t_data *data)
 {
 	int			j;
 	char		**new;
@@ -20,9 +20,9 @@ char		**add_env(int *i, char **env, char *value, t_data *data)
 	if (!(new = ft_calloc(*i + 2, sizeof(char*))))
 		exit_failure("malloc", data);
 	j = 0;
-	while (env[j])
+	while (data->env[j])
 	{
-		if (!(new[j] = ft_strdup(env[j])))
+		if (!(new[j] = ft_strdup(data->env[j])))
 			exit_failure("ft_strdup", data);
 		j++;
 	}
@@ -31,9 +31,9 @@ char		**add_env(int *i, char **env, char *value, t_data *data)
 	j++;
 	new[j] = NULL;
 	j = 0;
-	while (j < *i + 1)
-		free(env[j++]);
-	free(env);
+	while (j < *i)
+		free(data->env[j++]);
+	free(data->env);
 	return (new);
 }
 
@@ -98,7 +98,7 @@ void		ft_export(t_parsing *tmp, t_data *data)
 			i = ft_size_env(data);
 			data->env = del_env22(&i, buffer, data);
 			i = ft_size_env(data);
-			data->env = add_env(&i, data->env, tmp->arg[j], data);
+			data->env = add_env(&i, tmp->arg[j], data);
 			data->ret = 0;
 		}
 		j++;

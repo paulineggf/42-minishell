@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 17:10:07 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:48:06 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,19 @@ static void		ft_cd_error(t_parsing *parsing, t_data *data)
 static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
 {
 	int		i;
-	char	repertoire[4096];
+	char	*repertoire;
 
 	i = 0;
+	easy_malloc((void**)&repertoire, sizeof(char) * 4096, data);
 	while (data->env[i])
 		i++;
 	chdir(path);
 	getcwd(repertoire, 4096);
 	data->env = del_env2(&i, "PWD=", data);
-	path = ft_strjoin("PWD=", repertoire);
-	data->env = add_env(&i, data->env, path, data);
+	if (!(path = ft_strjoin("PWD=", repertoire)))
+		exit_failure("ft_strjoin", data);
+	add_garbage((void**)&path, data);
+	data->env = add_env(&i, path, data);
 	if (p_dir != NULL)
 		closedir(p_dir);
 	data->ret = 0;
@@ -74,9 +77,9 @@ static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
 void			ft_cd(t_parsing *parsing, t_data *data)
 {
 	DIR		*p_dir;
-	char	path[4096];
+	char	*path;
 
-	ft_bzero(path, 4096);
+	easy_malloc((void**)&path, sizeof(char) * 4096, data);
 	p_dir = opendir(parsing->arg[1]);
 	if (parsing->arg[1] == NULL || (ft_strncmp(parsing->arg[1], "~", 2) == 0))
 		ft_home(path, data);
