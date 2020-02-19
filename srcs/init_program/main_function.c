@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:49:58 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/18 16:28:43 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:19:56 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	main_function(t_data *data)
 	minishell_signals();
 	while (1)
 	{
-		data->verif_path = 0;
 		if ((data->str_prompt = ft_prompt(data)))
 			ft_putstr(data->str_prompt);
 		ret = get_next_line(0, &line);

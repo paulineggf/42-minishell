@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 16:21:27 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:27:14 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ void			ft_new_line(char *buf, char **tab, t_data *data)
 void			ft_simple_quote(int *i, char *str, char **tab, t_data *data)
 {
 	int			j;
-	char		buf[256];
+	char		*buf;
 
-	ft_bzero(buf, 256);
+	easy_malloc((void**)&buf, sizeof(char) * 256, data);
 	j = 0;
-	if (str[*i + 1] == '$')
-		data->verif_path = 42;
 	*i += 1;
 	while (str[*i] && str[*i] != '\'')
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 16:23:24 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:20:25 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,60 +30,60 @@ void			ft_other_case(int *i, char *str, char **tab, t_data *data)
 	*i += 1;
 }
 
-static char		*ft_del_quote2(char *str, int j, t_data *data)
-{
-	int			i;
-	int			size;
-	char		*dest;
+// static char		*ft_del_quote2(char *str, int j, t_data *data)
+// {
+// 	int			i;
+// 	int			size;
+// 	char		*dest;
 
-	i = 0;
-	size = ft_strlen(str);
-	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
-	while (str[i])
-	{
-		if (str[i] == '\'')
-		{
-			if (i < size)
-			{
-				if (str[i + 1] == '\'')
-					i += 2;
-				else
-					dest[j++] = str[i++];
-			}
-		}
-		else
-			dest[j++] = str[i++];
-	}
-	return (dest);
-}
+// 	i = 0;
+// 	size = ft_strlen(str);
+// 	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
+// 	while (str[i])
+// 	{
+// 		if (str[i] == '\'')
+// 		{
+// 			if (i < size)
+// 			{
+// 				if (str[i + 1] == '\'')
+// 					i += 2;
+// 				else
+// 					dest[j++] = str[i++];
+// 			}
+// 		}
+// 		else
+// 			dest[j++] = str[i++];
+// 	}
+// 	return (dest);
+// }
 
-static char		*ft_del_quote(char *str, int j, t_data *data)
-{
-	int			i;
-	int			size;
-	char		*dest;
+// static char		*ft_del_quote(char *str, int j, t_data *data)
+// {
+// 	int			i;
+// 	int			size;
+// 	char		*dest;
 
-	i = 0;
-	size = ft_strlen(str);
-	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
-	while (str[i])
-	{
-		if (str[i] == '"')
-		{
-			if (i < size)
-			{
-				if (str[i + 1] == '"')
-					i += 2;
-				else
-					dest[j++] = str[i++];
-			}
-		}
-		else
-			dest[j++] = str[i++];
-	}
-	dest = ft_del_quote2(dest, 0, data);
-	return (dest);
-}
+// 	i = 0;
+// 	size = ft_strlen(str);
+// 	easy_malloc((void**)&dest, sizeof(char) * (size + 1), data);
+// 	while (str[i])
+// 	{
+// 		if (str[i] == '"')
+// 		{
+// 			if (i < size)
+// 			{
+// 				if (str[i + 1] == '"')
+// 					i += 2;
+// 				else
+// 					dest[j++] = str[i++];
+// 			}
+// 		}
+// 		else
+// 			dest[j++] = str[i++];
+// 	}
+// 	dest = ft_del_quote2(dest, 0, data);
+// 	return (dest);
+// }
 
 char			**split_shell(char *str, t_data *data)
 {
@@ -92,7 +92,7 @@ char			**split_shell(char *str, t_data *data)
 
 	i = 0;
 	easy_malloc((void**)&tab, sizeof(char*) * 256, data);
-	str = ft_del_quote(str, 0, data);
+	// str = ft_del_quote(str, 0, data);
 	str = ft_correctif('\'', str, data);
 	str = ft_correctif('"', str, data);
 	while (str[i])

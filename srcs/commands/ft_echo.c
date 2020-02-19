@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:51:42 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 15:57:01 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:40:13 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ static void		ft_echo2(t_parsing *parsing, t_data *data)
 		if (!ft_strcmp(parsing->arg[i], "$?"))
 			ft_printf("%d ", data->ret);
 		else
-		{
-			if (parsing->arg[i][0] != '\0')
-				ft_printf("%s ", parsing->arg[i]);
-		}
+			ft_printf("%s ", parsing->arg[i]);
 		i++;
 	}
 	if (!ft_strcmp(parsing->arg[i], "$?"))
