@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/19 16:59:59 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:21:31 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,42 @@ void			ft_other_case(int *i, char *str, char **tab, t_data *data)
 	buf[0] = str[*i];
 	ft_new_line(buf, tab, data);
 	*i += 1;
+}
+
+int				ft_double_quote2(int *i, int *j, char *str, char *buf)
+{
+	*i += 1;
+	while (str[*i] && str[*i] != '"')
+	{
+		buf[*j] = str[*i];
+		*i += 1;
+		*j += 1;
+	}
+	if (str[*i] == '"')
+	{
+		*i += 1;
+		return (1);
+	}
+	else
+		return (0);
+}
+
+int				ft_simple_quote2(int *i, int *j, char *str, char *buf)
+{
+	*i += 1;
+	while (str[*i] && str[*i] != '\'')
+	{
+		buf[*j] = str[*i];
+		*i += 1;
+		*j += 1;
+	}
+	if (str[*i] == '\'')
+	{
+		*i += 1;
+		return (1);
+	}
+	else
+		return (0);
 }
 
 char			**split_shell(char *str, t_data *data)

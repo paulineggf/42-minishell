@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/19 13:20:06 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:22:20 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void				ft_simple_quote(int *i, char *str,
 					char **tab, t_data *data);
 void				ft_double_quote(int *i, char *str,
 					char **tab, t_data *data);
+int					ft_simple_quote2(int *i, int *j, char *str, char *buf);
+int					ft_double_quote2(int *i, int *j, char *str, char *buf);
 void				ft_line_basic(int *i, char *str, char **tab, t_data *data);
 void				ft_chevron(int *i, char *str, char **tab, t_data *data);
 void				ft_error(int flag_double, int flag_simple, t_data *data);

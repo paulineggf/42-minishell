@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/19 16:57:26 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:26:06 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ void			ft_line_basic(int *i, char *str, char **tab, t_data *data)
 		ft_del_slash(i, &j, str, buf);
 		*i += 1;
 	}
+	if (str[*i] == '\'' && !(ft_simple_quote2(i, &j, str, buf)))
+		ft_error(0, 1, data);
+	if (str[*i] == '"' && !(ft_double_quote2(i, &j, str, buf)))
+		ft_error(1, 0, data);
 	buf = control_env(buf, data);
 	ft_new_line(buf, tab, data);
 	while (str[*i] && str[*i] == ' ')
