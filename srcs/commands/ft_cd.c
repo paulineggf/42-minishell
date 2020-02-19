@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/18 13:48:06 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:19:40 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,16 @@ static void		ft_cd_error(t_parsing *parsing, t_data *data)
 	ft_putstr_fd(">\n", 2);
 }
 
-static void		ft_change_path(char *path, DIR *p_dir, t_data *data)
+static void		ft_cd_absolu(char *path, t_parsing *parsing)
 {
 	int		i;
-	char	*repertoire;
 
 	i = 0;
-	easy_malloc((void**)&repertoire, sizeof(char) * 4096, data);
-	while (data->env[i])
+	while (parsing->arg[1][i])
+	{
+		path[i] = parsing->arg[1][i];
 		i++;
-	chdir(path);
-	getcwd(repertoire, 4096);
-	data->env = del_env2(&i, "PWD=", data);
-	if (!(path = ft_strjoin("PWD=", repertoire)))
-		exit_failure("ft_strjoin", data);
-	add_garbage((void**)&path, data);
-	data->env = add_env(&i, path, data);
-	if (p_dir != NULL)
-		closedir(p_dir);
-	data->ret = 0;
+	}
 }
 
 void			ft_cd(t_parsing *parsing, t_data *data)
@@ -85,6 +76,8 @@ void			ft_cd(t_parsing *parsing, t_data *data)
 		ft_home(path, data);
 	else if ((ft_strncmp(parsing->arg[1], "/", 2) == 0))
 		path[0] = '/';
+	else if ((ft_strncmp(parsing->arg[1], "/", 1) == 0))
+		ft_cd_absolu(path, parsing);
 	else if (!(p_dir))
 	{
 		ft_cd_error(parsing, data);

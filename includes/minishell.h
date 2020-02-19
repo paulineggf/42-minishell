@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/18 16:30:03 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:20:06 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void				ft_unset(t_parsing *tmp, t_data *data);
 int					ft_env(t_data *data);
 int					ft_pwd(t_data *datas);
 void				ft_cd(t_parsing *parsing, t_data *data);
+void				ft_change_path(char *path, DIR *p_dir, t_data *data);
 int					ft_exit(t_parsing *tmp, t_data *data);
 void				exec_command(t_list **lst, t_data *data);
 int					exec_command_env(t_parsing *tmp, t_data *data);
