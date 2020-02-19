@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_shell3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:54:55 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/17 16:34:36 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:58:46 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,25 @@ void			ft_del_slash(int *i, int *j, char *str, char *buf)
 	size = ft_strlen(str);
 	if (str[*i] == '\\')
 	{
-		if (*i < size && str[*i + 1] == '\\')
+		if (!(str[*i + 1]))
+			buf[*j] = '\0';
+		else if (*i < size && str[*i + 1] == '\\')
 		{
 			*i += 1;
 			buf[*j] = str[*i];
 			*j += 1;
-			*i += 1;
 		}
 		else
+		{
 			*i += 1;
+			buf[*j] = str[*i];
+			*j += 1;
+		}
+	}
+	else
+	{
+		buf[*j] = str[*i];
+		*j += 1;
 	}
 }
 
