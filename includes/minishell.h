@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/19 18:22:20 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/20 12:25:45 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int					exec_command_env(t_parsing *tmp, t_data *data);
 int					ft_execve(t_parsing *tmp, t_data *data);
 int					is_builtin(t_parsing *parsing, t_data *data);
 void				pipe_command(t_parsing *tmp, t_list **lst, t_data *data);
+void				pipe_command_bis(t_parsing *tmp, t_list **lst,
+					t_data *data);
 void				left_chevron(t_list **tmp, t_data *data);
 void				right_chevron(t_list **tmp, t_data *data);
 int					check_separator(t_list **lst, t_data *data);
