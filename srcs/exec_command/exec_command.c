@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 09:42:32 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/18 16:42:49 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/20 12:16:11 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int					check_separator(t_list **lst, t_data *data)
 			break ;
 	}
 	close(data->fd0[1]);
+	close(data->fd1[1]);
 	return (1);
 }
 
@@ -43,7 +44,6 @@ static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 		if (tmp->l_chevron || tmp->r_chevron || tmp->ld_chevron)
 			check_separator(lst, data);
 		if (is_builtin(tmp, data) == 0)
-		{
 			if (ft_execve(tmp, data) == 0)
 			{
 				ft_putstr_fd("popo & max: ", 2);
@@ -51,7 +51,6 @@ static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 				ft_putstr_fd(": command not found\n", 2);
 				exit((data->ret = 127));
 			}
-		}
 	}
 	else if (data->pid < 0)
 		exit_failure("fork", data);
@@ -63,11 +62,16 @@ static void			fork_function(t_parsing *tmp, t_list **lst, t_data *data)
 	minishell_signals();
 }
 
-static void			avance_command(t_list **lst)
+static void			avance_command(t_list **lst, t_data *data)
 {
+	int		left;
+	int		right;
+
 	while (*lst != NULL && ((t_parsing*)(*lst)->content)->semicolon != 1
 	&& ((t_parsing*)(*lst)->content)->pipe != 1)
 		*lst = (*lst)->next;
+	if (((t_parsing*)(*lst)->content)->pipe == 1)
+		pipe_command_bis(((t_parsing*)((*lst)->content)), lst, data);
 	*lst = (*lst)->next;
 }
 
@@ -77,6 +81,7 @@ void				exec_command(t_list **lst, t_data *data)
 
 	ret = 0;
 	pipe(data->fd0);
+	pipe(data->fd1);
 	if (*lst != NULL)
 	{
 		ret = exec_command_env((*lst)->content, data);
@@ -88,9 +93,11 @@ void				exec_command(t_list **lst, t_data *data)
 				fork_function((*lst)->content, lst, data);
 		}
 		if (*lst)
-			avance_command(lst);
+			avance_command(lst, data);
 		exec_command(lst, data);
 	}
 	close(data->fd0[0]);
 	close(data->fd0[1]);
+	close(data->fd1[0]);
+	close(data->fd1[1]);
 }
