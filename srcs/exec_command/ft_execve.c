@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:59:15 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/18 16:44:43 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:55:23 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,18 @@ static void		ft_execve2(char *path, char **path_tab,
 	}
 }
 
+void			ft_execve3(char *path, t_parsing *tmp)
+{
+	int				i;
+	int				j;
+
+	i = 1;
+	getcwd(path, 4096);
+	j = ft_strlen(path);
+	while (tmp->arg[0][i])
+		path[j++] = tmp->arg[0][i++];
+}
+
 int				ft_execve(t_parsing *tmp, t_data *data)
 {
 	char			path[4096];
@@ -89,6 +101,13 @@ int				ft_execve(t_parsing *tmp, t_data *data)
 	if ((ft_strncmp(tmp->arg[0], "/", 1)) == 0)
 	{
 		if (execve(tmp->arg[0], tmp->arg, data->env) == -1)
+			return (0);
+		exit_failure(NULL, data);
+	}
+	else if ((ft_strncmp(tmp->arg[0], "./", 2)) == 0)
+	{
+		ft_execve3(path, tmp);
+		if (execve(path, tmp->arg, data->env) == -1)
 			return (0);
 		exit_failure(NULL, data);
 	}
