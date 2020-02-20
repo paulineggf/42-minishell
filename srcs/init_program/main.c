@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:46:38 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/12 09:35:41 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:21:49 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int			main(int argc, char **argv, char **env)
 		main_function(data);
 	}
 	else
-		ft_printf("popo & max: %s: No such file or directory\n", argv[1]);
+		ft_printf(2, "popo & max: %s: No such file or directory\n", argv[1]);
 	return (0);
 }

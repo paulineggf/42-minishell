@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 12:19:57 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/11 13:51:20 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:23:36 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			ft_pwd(t_data *data)
 		data->ret = 1;
 		return (1);
 	}
-	ft_printf("%s\n", repertoire);
+	ft_printf(1, "%s\n", repertoire);
 	dup2(data->savestdout, STDOUT_FILENO);
 	dup2(data->savestdin, STDIN_FILENO);
 	close(data->savestdout);

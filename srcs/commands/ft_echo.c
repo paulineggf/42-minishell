@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:51:42 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/19 12:40:13 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:23:14 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void		ft_echo_n(t_parsing *parsing, t_data *data)
 		while (parsing->arg[++i + 1])
 		{
 			if (!ft_strcmp(parsing->arg[i], "$?"))
-				ft_printf("%d ", data->ret);
+				ft_printf(1, "%d ", data->ret);
 			else
-				ft_printf("%s ", parsing->arg[i]);
+				ft_printf(1, "%s ", parsing->arg[i]);
 		}
 		if (!ft_strcmp(parsing->arg[i], "$?"))
-			ft_printf("%d", data->ret);
+			ft_printf(1, "%d", data->ret);
 		else
 			ft_putstr_fd(parsing->arg[i], 1);
 	}
@@ -41,15 +41,15 @@ static void		ft_echo2(t_parsing *parsing, t_data *data)
 	while (parsing->arg[i + 1])
 	{
 		if (!ft_strcmp(parsing->arg[i], "$?"))
-			ft_printf("%d ", data->ret);
+			ft_printf(1, "%d ", data->ret);
 		else
-			ft_printf("%s ", parsing->arg[i]);
+			ft_printf(1, "%s ", parsing->arg[i]);
 		i++;
 	}
 	if (!ft_strcmp(parsing->arg[i], "$?"))
-		ft_printf("%d\n", data->ret);
+		ft_printf(1, "%d\n", data->ret);
 	else
-		ft_printf("%s\n", parsing->arg[i]);
+		ft_printf(1, "%s\n", parsing->arg[i]);
 }
 
 int				ft_echo(t_parsing *parsing, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:49:58 by pganglof          #+#    #+#             */
-/*   Updated: 2020/02/19 18:17:20 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:22:09 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*get_command(t_data *data)
 	{
 		buf[ret] = '\0';
 		if (ret == 0 && line == NULL)
-			exit_failure2(0, data);
+			exit_failure2(0, NULL, NULL, data);
 		else if (ret == 0)
-			ft_printf("%c%c\b\b", 0x7f, 0x7f);
+			ft_printf(1, "%c%c\b\b", 0x7f, 0x7f);
 		if (buf[0] == '\n')
 			break ;
 		if (!(line = ft_strjoin(line, buf)))

@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/20 12:25:45 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:36:45 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void				garbage_init(t_data *data);
 void				add_garbage(void **content, t_data *data);
 void				easy_malloc(void **content, size_t n, t_data *data);
 void				exit_failure(char *str, t_data *data);
-void				exit_failure2(int ret, t_data *data);
+void				exit_failure2(int ret, char *s1, char *s2, t_data *data);
 char				*ft_prompt(t_data *data);
 int					main(int argc, char **argv, char **env);
 void				main_function(t_data *data);

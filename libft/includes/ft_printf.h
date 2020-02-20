@@ -6,7 +6,7 @@
 /*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 19:21:07 by pganglof          #+#    #+#             */
-/*   Updated: 2019/11/07 14:45:19 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:21:17 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_op
 	int			wildcard_nbr;
 }				t_opt;
 
-int				ft_printf(const char *str, ...);
+int				ft_printf(int fd, const char *str, ...);
 int				ft_atoi_printf(char *s, int *i, char c);
 int				fct_p(va_list *ap, t_opt *opt);
 void			p_check_wildcard(va_list *ap, t_opt *opt);

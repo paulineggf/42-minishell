@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:36:25 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/18 16:27:23 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:36:59 by pganglof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,14 @@ void		exit_failure(char *str, t_data *data)
 	main_function(data);
 }
 
-void		exit_failure2(int ret, t_data *data)
+void		exit_failure2(int ret, char *s1, char *s2, t_data *data)
 {
 	int			i;
 
 	i = 0;
+	ft_putstr_fd("exit\n", 2);
+	if (s1 && s2)
+		ft_printf(2, "popo & max: exit: %s: %s", s1, s2);
 	ft_lstclear(&(data->garbage_collector), &free);
 	while (data->env[i])
 	{
@@ -60,6 +63,5 @@ void		exit_failure2(int ret, t_data *data)
 		i++;
 	}
 	free(data);
-	ft_putstr_fd("exit\n", 2);
 	exit(ret);
 }
