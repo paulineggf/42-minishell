@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:10:32 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/17 13:14:46 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:42:48 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,11 @@ char			*ft_correctif(char c, char *str, t_data *data)
 			dest[j++] = str[i++];
 	}
 	return (dest);
+}
+
+void			ft_verif_arg(char **tab, t_data *data)
+{
+	if (!ft_strcmp(tab[0], ";"))
+		exit_failure(
+		"popo & max: syntax error near unexpected token `;'\n", data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 15:54:55 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/20 15:22:38 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/02/25 12:29:00 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 static void		minishell_signals_handler(int i)
 {
-	t_data		*data;
-
-	if (!(data = ft_calloc(1, sizeof(t_data))))
-		return ;
 	if (i == SIGINT)
 	{
-		ft_printf(1, "\b\b%c%c\n", 0x7f, 0x7f);
-		if ((data->str_prompt = ft_prompt(data)))
-			ft_putstr(data->str_prompt);
+		ft_printf(2, "\b\b%c%c\n", 0x7f, 0x7f);
+		close(0);
 		signal(SIGINT, minishell_signals_handler);
+		signal(SIGQUIT, minishell_signals_handler);
 	}
 	else if (i == SIGQUIT)
 	{
-		ft_printf(1, "\b\b%c%c\b\b", 0x7f, 0x7f);
+		ft_printf(2, "\b\b%c%c\b\b", 0x7f, 0x7f);
+		signal(SIGINT, minishell_signals_handler);
 		signal(SIGQUIT, minishell_signals_handler);
 	}
 }
@@ -40,20 +37,20 @@ void			minishell_signals(void)
 
 static void		minishell_signals_handler2(int i)
 {
-	t_data		*data;
+	int			pid;
+	int			status;
 
-	if (!(data = ft_calloc(1, sizeof(t_data))))
-		return ;
+	pid = 0;
 	if (i == SIGINT)
 	{
-		ft_putstr("\n");
+		ft_putstr_fd("\n", 2);
 		signal(SIGINT, minishell_signals_handler);
 		signal(SIGQUIT, minishell_signals_handler);
 	}
 	else if (i == SIGQUIT)
 	{
-		waitpid(data->pid, &data->status, 0);
-		ft_printf(1, "Quit: %d\n", data->status);
+		waitpid(pid, &status, 0);
+		ft_printf(2, "Quit: %d\n", status);
 		signal(SIGQUIT, minishell_signals_handler);
 		signal(SIGINT, minishell_signals_handler);
 	}

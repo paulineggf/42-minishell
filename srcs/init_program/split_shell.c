@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 14:19:45 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/19 18:21:31 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:43:21 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void			ft_error(int flag_double, int flag_simple, t_data *data)
 
 void			ft_other_case(int *i, char *str, char **tab, t_data *data)
 {
-	char		buf[256];
+	char		buf[2];
 
-	ft_bzero(buf, 256);
+	ft_bzero(buf, 2);
 	buf[0] = str[*i];
 	ft_new_line(buf, tab, data);
 	*i += 1;
@@ -86,5 +86,6 @@ char			**split_shell(char *str, t_data *data)
 		else
 			ft_else_split(&i, str, tab, data);
 	}
+	ft_verif_arg(tab, data);
 	return (tab);
 }

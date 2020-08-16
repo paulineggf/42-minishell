@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pganglof <pganglof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:41:52 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/20 15:36:45 by pganglof         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:43:18 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int					len_tabtab(char **str);
 char				**add_arg2(char **tmp1, char **tmp2, t_data *data);
 char				**ft_init_env(char **env, t_data *data);
 char				**split_shell(char *str, t_data *data);
+void				ft_verif_arg(char **tab, t_data *data);
 void				ft_new_line(char *buf, char **tab, t_data *data);
 void				ft_simple_quote(int *i, char *str,
 					char **tab, t_data *data);

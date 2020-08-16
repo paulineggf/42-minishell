@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 15:37:57 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/19 13:19:40 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:40:17 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static void		ft_cd_classic(char *path, t_parsing *parsing)
 static void		ft_cd_error(t_parsing *parsing, t_data *data)
 {
 	data->ret = 1;
-	ft_putstr_fd("Cannot open directory <", 2);
+	ft_putstr_fd("popo & max: cd: ", 2);
 	ft_putstr_fd(parsing->arg[1], 2);
-	ft_putstr_fd(">\n", 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
 }
 
 static void		ft_cd_absolu(char *path, t_parsing *parsing)
@@ -67,8 +67,8 @@ static void		ft_cd_absolu(char *path, t_parsing *parsing)
 
 void			ft_cd(t_parsing *parsing, t_data *data)
 {
-	DIR		*p_dir;
-	char	*path;
+	DIR				*p_dir;
+	char			*path;
 
 	easy_malloc((void**)&path, sizeof(char) * 4096, data);
 	p_dir = opendir(parsing->arg[1]);

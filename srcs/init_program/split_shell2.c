@@ -6,7 +6,7 @@
 /*   By: mcraipea <mcraipea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:55:14 by mcraipea          #+#    #+#             */
-/*   Updated: 2020/02/19 18:26:06 by mcraipea         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:10:45 by mcraipea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void			ft_line_basic(int *i, char *str, char **tab, t_data *data)
 	if (str[*i] == '"' && !(ft_double_quote2(i, &j, str, buf)))
 		ft_error(1, 0, data);
 	buf = control_env(buf, data);
-	ft_new_line(buf, tab, data);
+	if (buf[0] != '\0')
+		ft_new_line(buf, tab, data);
 	while (str[*i] && str[*i] == ' ')
 		*i += 1;
 }
